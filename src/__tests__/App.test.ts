@@ -8,11 +8,10 @@ describe('App', () => {
     expect(screen.getByRole('navigation')).toBeInTheDocument();
   });
 
-  it('renders the profile column with name', () => {
+  it('renders the name in the navbar', () => {
     render(App);
-    expect(
-      screen.getByRole('heading', { name: /Pedro Henrique Rocha Moy/i })
-    ).toBeInTheDocument();
+    const nav = screen.getByRole('navigation');
+    expect(nav).toHaveTextContent(/Pedro Henrique Rocha Moy/i);
   });
 
   it('renders the resume section', () => {

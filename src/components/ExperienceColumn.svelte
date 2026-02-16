@@ -2,24 +2,15 @@
   import { SectionId } from '../types/navigation';
   import {
     PROFILE,
-    INTERESTS_INLINE_TEXT,
     EXPERIENCE_ENTRIES,
     PORTFOLIO_ENTRIES,
   } from '../types/resume';
+
+  const currentYear = new Date().getFullYear();
 </script>
 
 <div id={SectionId.Resume} class="lg:w-3/5 lg:overflow-y-auto">
   <div class="px-8 py-12 lg:px-12 lg:py-16">
-    <h2 class="text-text-primary mb-4 text-2xl font-bold">Summary</h2>
-
-    <p class="text-text-secondary mb-2 max-w-2xl text-sm leading-relaxed">
-      {PROFILE.summary}
-    </p>
-
-    <p class="text-text-secondary mb-8 max-w-2xl text-xs italic leading-relaxed">
-      Interests: {INTERESTS_INLINE_TEXT}
-    </p>
-
     <h2 class="text-text-primary mb-8 text-2xl font-bold">Experience</h2>
 
     <div class="space-y-0">
@@ -66,5 +57,9 @@
         </div>
       {/each}
     </div>
+
+    <p class="text-text-secondary mt-10 text-sm">
+      &copy; {currentYear} {PROFILE.name}
+    </p>
   </div>
 </div>

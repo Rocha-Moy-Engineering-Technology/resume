@@ -13,7 +13,7 @@ describe('NavBar', () => {
 
   it('renders the brand text', () => {
     render(NavBar, { props: { oncontact: mockOnContact } });
-    expect(screen.getByText('PHR Moy')).toBeInTheDocument();
+    expect(screen.getByText(PROFILE.name)).toBeInTheDocument();
   });
 
   it('renders download resume icon link with correct href', () => {
