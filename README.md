@@ -1,24 +1,39 @@
-# Contractor-Site
+# Pedro Henrique Rocha Moy - Resume
 
-This will be my resume site;
+Personal resume website showcasing professional experience, portfolio projects, and education.
 
-It will use my resume as content; have a download button to get a PDF; and contact section;
+**Live:** https://rocha-moy-engineering-technology.github.io/resume
 
-see https://rocha-moy-engineering-technology.github.io/pastoral_conscience_site/
+## Features
 
-for the contact me section with https://app.web3forms.com/ (forms)
+- Professional experience timeline with role descriptions and technology tags
+- Portfolio section highlighting key projects
+- Education history
+- Downloadable PDF resume
+- Contact form powered by [Web3Forms](https://web3forms.com/)
+- Responsive two-column layout (desktop) with single-column mobile fallback
+- Dark theme
 
-to be deployed to github pages.
+## Tech Stack
 
-There is a pic.png file here which shall be part of the site;
+- **Framework:** Svelte 5 + Vite
+- **Styling:** Tailwind CSS v4
+- **Testing:** Vitest (unit), Playwright (e2e)
+- **Deployment:** GitHub Pages via GitHub Actions
 
-other links that I want part of this site are:
+## Development
 
-https://github.com/phrmoy
-https://www.linkedin.com/in/phrmoy/
+```bash
+npm install
+npm run dev        # Start dev server
+npm run build      # Production build
+npm run test       # Run unit tests
+npm run test:e2e   # Run end-to-end tests
+npm run validate   # Format, type-check, lint, test, and build
+```
 
--
+## Links
 
-let's also have an interest section;
-
-make the website simple to the point;
+- [GitHub](https://github.com/phrmoy)
+- [LinkedIn](https://www.linkedin.com/in/phrmoy/)
+- [Toptal Profile](https://www.toptal.com/developers/resume/pedro-henrique-rocha-moy)
