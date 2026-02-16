@@ -16,11 +16,12 @@ describe('NavBar', () => {
     expect(screen.getByText('PHR Moy')).toBeInTheDocument();
   });
 
-  it('renders download resume link with correct href', () => {
+  it('renders download resume icon link with correct href', () => {
     render(NavBar, { props: { oncontact: mockOnContact } });
     const link = screen.getByRole('link', { name: /download resume/i });
     expect(link).toHaveAttribute('href', '/resume.pdf');
     expect(link).toHaveAttribute('download', '');
+    expect(link.querySelector('svg')).toBeInTheDocument();
   });
 
   it('renders GitHub icon link', () => {

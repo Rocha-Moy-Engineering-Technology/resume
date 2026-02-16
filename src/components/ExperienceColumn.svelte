@@ -10,6 +10,8 @@
 
 <div id={SectionId.Resume} class="lg:w-3/5 lg:overflow-y-auto">
   <div class="px-8 py-12 lg:px-12 lg:py-16">
+    <h2 class="text-text-primary mb-4 text-2xl font-bold">Summary</h2>
+
     <p class="text-text-secondary mb-2 max-w-2xl text-sm leading-relaxed">
       {PROFILE.summary}
     </p>

@@ -17,7 +17,7 @@ test.describe('Contractor Site', () => {
     const nav = page.locator('nav');
     await expect(nav).toBeVisible();
     await expect(nav.getByText('PHR Moy')).toBeVisible();
-    await expect(nav.getByText('Download Resume')).toBeVisible();
+    await expect(nav.getByRole('link', { name: /download resume/i })).toBeVisible();
     await expect(nav.getByRole('button', { name: /contact/i })).toBeVisible();
   });
 
@@ -74,10 +74,11 @@ test.describe('Contractor Site', () => {
     await expect(portfolioLink).toHaveAttribute('target', '_blank');
   });
 
-  test('navbar download resume link has correct attributes', async ({
+  test('navbar download resume icon link has correct attributes', async ({
     page,
   }) => {
-    const downloadLink = page.getByRole('link', {
+    const nav = page.locator('nav');
+    const downloadLink = nav.getByRole('link', {
       name: /download resume/i,
     });
     await expect(downloadLink).toBeVisible();

@@ -14,6 +14,13 @@ describe('ExperienceColumn', () => {
     expect(container.querySelector('#resume')).toBeInTheDocument();
   });
 
+  it('renders the summary heading', () => {
+    render(ExperienceColumn);
+    expect(
+      screen.getByRole('heading', { name: /summary/i })
+    ).toBeInTheDocument();
+  });
+
   it('renders the summary text', () => {
     render(ExperienceColumn);
     expect(screen.getByText(PROFILE.summary)).toBeInTheDocument();

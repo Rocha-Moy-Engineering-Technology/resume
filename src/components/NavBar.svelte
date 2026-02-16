@@ -8,6 +8,12 @@
   let { oncontact }: Props = $props();
 </script>
 
+<style>
+  .tooltip:hover .tooltip-text {
+    opacity: 1;
+  }
+</style>
+
 <nav
   class="border-border sticky top-0 z-40 border-b bg-white/95 backdrop-blur-sm"
 >
@@ -17,9 +23,18 @@
       <a
         href="/resume.pdf"
         download
-        class="text-text-secondary hover:text-accent text-sm font-medium transition-colors duration-200"
+        aria-label="Download Resume"
+        class="tooltip text-text-secondary hover:text-accent relative transition-colors duration-200"
       >
-        Download Resume
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="18" x2="12" y2="12"/>
+          <polyline points="9 15 12 18 15 15"/>
+        </svg>
+        <span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white opacity-0 transition-opacity duration-150 tooltip-text">
+          Download Resume PDF
+        </span>
       </a>
       <a
         href={PROFILE.github}
