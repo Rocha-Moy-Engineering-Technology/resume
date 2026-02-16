@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import { describe, expect, it, vi } from 'vitest';
 import NavBar from '../components/NavBar.svelte';
-import { PROFILE } from '../types/resume';
+import { PROFILE, INTERESTS_INLINE_TEXT } from '../types/resume';
 
 describe('NavBar', () => {
   const mockOnContact = vi.fn();
@@ -14,6 +14,11 @@ describe('NavBar', () => {
   it('renders the brand text', () => {
     render(NavBar, { props: { oncontact: mockOnContact } });
     expect(screen.getByText(PROFILE.name)).toBeInTheDocument();
+  });
+
+  it('renders interests under the name', () => {
+    render(NavBar, { props: { oncontact: mockOnContact } });
+    expect(screen.getByText(INTERESTS_INLINE_TEXT)).toBeInTheDocument();
   });
 
   it('renders download resume icon link with correct href', () => {

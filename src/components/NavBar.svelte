@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PROFILE } from '../types/resume';
+  import { PROFILE, INTERESTS_INLINE_TEXT } from '../types/resume';
 
   interface Props {
     oncontact: () => void;
@@ -22,7 +22,10 @@
   class="border-border sticky top-0 z-40 border-b bg-white/95 backdrop-blur-sm"
 >
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-    <span class="text-text-primary font-display text-2xl font-bold lg:text-3xl">{PROFILE.name}</span>
+    <div class="flex flex-col gap-1">
+      <span class="text-text-primary font-display text-2xl font-bold lg:text-3xl">{PROFILE.name}</span>
+      <span class="text-text-secondary text-xs">{INTERESTS_INLINE_TEXT}</span>
+    </div>
     <div class="flex items-center gap-5">
       <a
         href="{import.meta.env.BASE_URL}resume.pdf"

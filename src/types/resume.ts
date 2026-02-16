@@ -322,13 +322,11 @@ export const EDUCATION_ENTRIES: readonly EducationEntry[] = [
 
 export const PROFILE = {
   name: 'Pedro Henrique Rocha Moy',
-  title: 'Data Scientist and Machine Learning Developer',
-  location: 'Miami, FL, United States',
-  summary:
-    'Data scientist and engineer with experience building data pipelines and ML/AI systems with governance and auditability. Focused on bottom-line impact, delivering agentic solutions by combining domain expertise, agent design, and custom data and RAG pipelines that transform requirements into repeatable, consistent, verifiable, accurate AI systems.',
+  title: 'AI, Machine Learning, Data Science & Engineering',
+  location: 'Miami, FL',
   github: 'https://github.com/phrmoy',
   linkedin: 'https://www.linkedin.com/in/phrmoy/',
 } as const;
 
 export const INTERESTS_INLINE_TEXT =
-  'ML & AI, Agentic Development, Data Engineering, NLP, Full-Stack Development, Cloud & DevOps, Quantitative Finance, Data Science' as const;
+  'Machine Learning & AI, Data Science, Natural Language Processing, Quantitative Finance, Agentic Development, Data Engineering, Data Analysis, Business Intelligence, Full-Stack Development' as const;
