@@ -343,4 +343,4 @@ export const PROFILE = {
 } as const;
 
 export const INTERESTS_INLINE_TEXT =
-  'Machine Learning & AI, Data Science, Natural Language Processing, Quantitative Finance, Agentic Development, Data Engineering, Data Analysis, Business Intelligence, Full-Stack Development' as const;
+  'Artificial Intelligence, Machine Learning, Data Science, Data & Software Engineering' as const;

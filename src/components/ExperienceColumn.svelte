@@ -10,12 +10,12 @@
 </script>
 
 <div id={SectionId.Resume} class="lg:w-3/5 lg:overflow-y-auto">
-  <div class="px-8 py-12 lg:px-12 lg:py-16">
+  <div class="px-8 py-12 lg:px-12 lg:py-8">
     <h2 class="text-text-primary mb-8 text-2xl font-bold">Experience</h2>
 
     <div class="space-y-0">
       {#each EXPERIENCE_ENTRIES as entry, i (entry.title)}
-        <div class="border-border py-6 {i > 0 ? 'border-t' : ''}">
+        <div class="bg-white/[0.02] backdrop-blur-xl border-white/[0.05] shadow-sm hover:shadow-lg hover:shadow-accent/20 rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 mb-6 group">
           <div class="mb-2 flex flex-col justify-between md:flex-row md:items-baseline">
             <h3 class="text-text-primary text-lg font-semibold">{entry.title}</h3>
             <span class="text-text-secondary text-sm">{entry.dates}</span>
@@ -30,7 +30,7 @@
           </ul>
           <div class="flex flex-wrap gap-1.5">
             {#each entry.technologies as tech (tech)}
-              <span class="bg-tag-bg text-tag-text rounded-full px-2.5 py-0.5 text-xs font-medium">
+              <span class="bg-tag-bg text-tag-text rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors duration-200 hover:bg-accent hover:text-white cursor-default">
                 {tech}
               </span>
             {/each}
@@ -42,7 +42,7 @@
     <div class="border-border mt-10 border-t pt-8">
       <h2 class="text-text-primary mb-6 text-2xl font-bold">Portfolio</h2>
       {#each PORTFOLIO_ENTRIES as entry (entry.title)}
-        <div class="py-4">
+        <div class="bg-bg-card/40 backdrop-blur-md border-border/50 shadow-sm hover:shadow-lg hover:shadow-accent/20 rounded-xl border p-6 transition-all duration-300 hover:-translate-y-1 mb-6 group">
           <a
             href={entry.url}
             target="_blank"

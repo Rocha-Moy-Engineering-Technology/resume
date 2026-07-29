@@ -19,12 +19,14 @@
 </style>
 
 <nav
-  class="border-border sticky top-0 z-40 border-b bg-white/95 backdrop-blur-sm"
+  class="border-border sticky top-0 z-40 border-b bg-bg-primary/90 backdrop-blur-md"
 >
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-    <div class="flex flex-col gap-1">
-      <span class="text-text-primary font-display text-2xl font-bold lg:text-3xl">{PROFILE.name}</span>
-      <span class="text-text-secondary text-xs">{INTERESTS_INLINE_TEXT}</span>
+    <div class="flex items-center gap-4 lg:gap-8 flex-1 min-w-0 pr-4">
+      <span class="text-text-primary font-display text-xl sm:text-2xl font-bold lg:text-3xl shrink-0 whitespace-nowrap">{PROFILE.name}</span>
+      <span class="bg-gradient-to-r from-accent to-cyan-300 bg-clip-text text-transparent font-display text-sm md:text-lg lg:text-xl italic tracking-wide text-left lg:text-right flex-1 whitespace-normal">
+        {PROFILE.title}
+      </span>
     </div>
     <div class="flex items-center gap-5">
       <a

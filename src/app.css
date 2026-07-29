@@ -1,20 +1,37 @@
 @import 'tailwindcss';
 
+:root {
+  --bg-primary: #020617;
+  --bg-surface: #0f172a;
+  --bg-card: #0f172a;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --border: #1e293b;
+  --divider: #1e293b;
+  --tag-bg: rgba(56, 189, 248, 0.1);
+  --tag-text: #38bdf8;
+  --success: #22c55e;
+  --error: #ef4444;
+  --backdrop: rgba(0, 0, 0, 0.8);
+}
+
 @theme {
-  --color-bg-primary: #ffffff;
-  --color-bg-surface: #ffffff;
-  --color-bg-card: #ffffff;
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #444444;
-  --color-accent: #1e40af;
-  --color-accent-hover: #1e3a8a;
-  --color-border: #e5e7eb;
-  --color-divider: #d1d5db;
-  --color-tag-bg: #f1f5f9;
-  --color-tag-text: #1e40af;
-  --color-success: #22c55e;
-  --color-error: #ef4444;
-  --color-backdrop: rgba(0, 0, 0, 0.5);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-card: var(--bg-card);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border: var(--border);
+  --color-divider: var(--divider);
+  --color-tag-bg: var(--tag-bg);
+  --color-tag-text: var(--tag-text);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-backdrop: var(--backdrop);
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Source Sans 3', system-ui, sans-serif;
 }

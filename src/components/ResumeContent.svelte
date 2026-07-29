@@ -17,7 +17,7 @@
     <h3 class="text-text-primary mb-8 text-2xl font-semibold">Experience</h3>
     <div class="mb-16 space-y-6">
       {#each EXPERIENCE_ENTRIES as entry (entry.title)}
-        <div class="bg-bg-card border-border rounded-xl border p-6">
+        <div class="bg-white/[0.02] backdrop-blur-xl border-white/[0.05] shadow-lg rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/20 group">
           <div
             class="mb-3 flex flex-col justify-between md:flex-row md:items-center"
           >
@@ -39,7 +39,7 @@
           <div class="flex flex-wrap gap-2">
             {#each entry.technologies as tech (tech)}
               <span
-                class="bg-tag-bg text-tag-text rounded-full px-3 py-1 text-xs font-medium"
+                class="bg-tag-bg text-tag-text rounded-full px-3 py-1 text-xs font-medium transition-colors duration-200 hover:bg-accent hover:text-white cursor-default"
               >
                 {tech}
               </span>
@@ -53,7 +53,7 @@
     <h3 class="text-text-primary mb-8 text-2xl font-semibold">Portfolio</h3>
     <div class="mb-16 space-y-6">
       {#each PORTFOLIO_ENTRIES as entry (entry.title)}
-        <div class="bg-bg-card border-border rounded-xl border p-6">
+        <div class="bg-bg-card/40 backdrop-blur-md border-border/50 shadow-lg rounded-xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/20 group">
           <a
             href={entry.url}
             target="_blank"
@@ -73,7 +73,7 @@
     <h3 class="text-text-primary mb-8 text-2xl font-semibold">Education</h3>
     <div class="space-y-6">
       {#each EDUCATION_ENTRIES as entry (entry.degree)}
-        <div class="bg-bg-card border-border rounded-xl border p-6">
+        <div class="bg-bg-card/40 backdrop-blur-md border-border/50 shadow-lg rounded-xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/20 group">
           <div
             class="flex flex-col justify-between md:flex-row md:items-center"
           >
