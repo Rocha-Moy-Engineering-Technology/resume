@@ -20,24 +20,38 @@ export interface EducationEntry {
 
 export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
   {
-    title: 'Chief Architect',
-    company: 'Rocha Moy Trading & Capital',
-    dates: '2017 - Present',
+    title: 'AI Advisor',
+    company: 'Circana',
+    dates: '2026',
     descriptions: [
-      'Developed the API for probabilistic and algorithmic options trading with Interactive Brokers and TD Ameritrade',
-      'Specialties include data integration, task automation, portfolio simulations, risk mitigation, and strategy validation',
-      'Integrated many different data sources from APIs to web scraping',
-      'Automated trade execution, trade scheduling, and fund releases for trading',
+      'Worked with managers and engineers to understand the existing state of affairs in the AI pipeline',
+      'Researched and delivered battle-tested strategies for AI pipelines',
+      'Delivered the final AI design pipeline resulting in a reduction in prompt sizes to over 90%',
     ],
     technologies: [
-      'Python',
-      'AWS',
-      'REST APIs',
-      'Machine Learning',
-      'Quantitative Finance',
-      'Options Trading',
-      'Portfolio Optimization',
-      'Risk Management',
+      'LLMs',
+      'AI Architecture',
+      'Prompt Engineering',
+      'Systems Optimization',
+    ],
+  },
+  {
+    title: 'Head of AI',
+    company: 'Tech of Eden PBC',
+    dates: '2026',
+    descriptions: [
+      'Devised POC and MVP strategy and documentation for a new AI-driven technology',
+      'Designed and oversaw a series of case studies and experiments',
+      'Drove the POC and MVP work and provided leadership in close proximity to the CEO',
+      'Filled in the roles of leader and engineer to generate results',
+    ],
+    technologies: [
+      'LLMs',
+      'AI',
+      'RLHF',
+      'Prompt Engineering',
+      'POC/MVP Development',
+      'Technical Leadership',
     ],
   },
   {
@@ -322,7 +336,7 @@ export const EDUCATION_ENTRIES: readonly EducationEntry[] = [
 
 export const PROFILE = {
   name: 'Pedro Henrique Rocha Moy',
-  title: 'AI, Machine Learning, Data Science & Engineering',
+  title: 'Artificial Intelligence, Machine Learning, Data Science, Data & Software Engineering',
   location: 'Miami, FL',
   github: 'https://github.com/phrmoy',
   linkedin: 'https://www.linkedin.com/in/phrmoy/',
