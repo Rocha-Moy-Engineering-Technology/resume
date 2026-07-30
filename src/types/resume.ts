@@ -265,7 +265,7 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
   },
   {
     title: 'Data Analyst',
-    company: 'Cartesian',
+    company: 'Toptal Client',
     dates: '2015',
     descriptions: [
       'Aided managed analytics efforts promoting best practices within batch workflows and data management',
@@ -283,7 +283,7 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
   },
   {
     title: 'Data Analytics Engineer',
-    company: 'Daktari Diagnostics',
+    company: 'Toptal Client',
     dates: '2013 - 2015',
     descriptions: [
       'Lead developer of mainstream data processing and data analysis applications in Python for Windows/Mac',
