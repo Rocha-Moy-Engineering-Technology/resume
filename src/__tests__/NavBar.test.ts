@@ -24,8 +24,13 @@ describe('NavBar', () => {
   it('renders download resume icon link with correct href', () => {
     render(NavBar, { props: { oncontact: mockOnContact } });
     const link = screen.getByRole('link', { name: /download resume/i });
-    expect(link).toHaveAttribute('href', `${import.meta.env.BASE_URL}resume.pdf`);
-    expect(link.getAttribute('download')).toMatch(/^PHRMOY_RESUME_rev\d{8}\.pdf$/);
+    expect(link).toHaveAttribute(
+      'href',
+      `${import.meta.env.BASE_URL}resume.pdf`
+    );
+    expect(link.getAttribute('download')).toMatch(
+      /^PHRMOY_RESUME_rev\d{8}\.pdf$/
+    );
     expect(link.querySelector('svg')).toBeInTheDocument();
   });
 

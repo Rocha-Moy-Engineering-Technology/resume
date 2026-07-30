@@ -76,9 +76,7 @@
 </script>
 
 {#if formState === FormState.Success}
-  <div
-    class="bg-success/10 border-success rounded-xl border p-6 text-center"
-  >
+  <div class="bg-success/10 border-success rounded-xl border p-6 text-center">
     <p class="text-success text-lg font-semibold">{submissionMessage}</p>
     <button
       type="button"

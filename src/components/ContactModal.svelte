@@ -34,11 +34,13 @@
     aria-label="Contact form"
     onclick={handleBackdropClick}
   >
-    <div class="bg-bg-primary relative mx-4 w-full max-w-lg rounded-2xl p-8 shadow-xl">
+    <div
+      class="bg-bg-primary relative mx-4 w-full max-w-lg rounded-2xl p-8 shadow-xl"
+    >
       <button
         type="button"
         onclick={onclose}
-        class="text-text-secondary hover:text-text-primary absolute right-4 top-4 text-2xl leading-none transition-colors"
+        class="text-text-secondary hover:text-text-primary absolute top-4 right-4 text-2xl leading-none transition-colors"
         aria-label="Close contact form"
       >
         &times;

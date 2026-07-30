@@ -17,7 +17,9 @@ test.describe('Contractor Site', () => {
     const nav = page.locator('nav');
     await expect(nav).toBeVisible();
     await expect(nav.getByText('PHR Moy')).toBeVisible();
-    await expect(nav.getByRole('link', { name: /download resume/i })).toBeVisible();
+    await expect(
+      nav.getByRole('link', { name: /download resume/i })
+    ).toBeVisible();
     await expect(nav.getByRole('button', { name: /contact/i })).toBeVisible();
   });
 
@@ -25,9 +27,7 @@ test.describe('Contractor Site', () => {
     await expect(
       page.getByRole('heading', { name: 'Pedro Henrique Rocha Moy' })
     ).toBeVisible();
-    await expect(
-      page.getByAltText('Pedro Henrique Rocha Moy')
-    ).toBeVisible();
+    await expect(page.getByAltText('Pedro Henrique Rocha Moy')).toBeVisible();
   });
 
   test('navbar has social icon links', async ({ page }) => {

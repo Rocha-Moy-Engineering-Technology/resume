@@ -336,7 +336,8 @@ export const EDUCATION_ENTRIES: readonly EducationEntry[] = [
 
 export const PROFILE = {
   name: 'Pedro Henrique Rocha Moy',
-  title: 'Artificial Intelligence, Machine Learning, Data Science, Data & Software Engineering',
+  title:
+    'Artificial Intelligence, Machine Learning, Data Science, Data & Software Engineering',
   location: 'Miami, FL',
   github: 'https://github.com/phrmoy',
   linkedin: 'https://www.linkedin.com/in/phrmoy/',
