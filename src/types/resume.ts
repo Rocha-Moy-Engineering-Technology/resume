@@ -21,7 +21,7 @@ export interface EducationEntry {
 export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
   {
     title: 'AI Advisor',
-    company: 'Circana',
+    company: 'Toptal Client',
     dates: '2026',
     descriptions: [
       'Worked with managers and engineers to understand the existing state of affairs in the AI pipeline',
@@ -37,7 +37,7 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
   },
   {
     title: 'Head of AI',
-    company: 'Tech of Eden PBC',
+    company: 'Toptal Client',
     dates: '2026',
     descriptions: [
       'Devised POC and MVP strategy and documentation for a new AI-driven technology',
