@@ -1,8 +1,16 @@
 import { expect, test } from '@playwright/test';
 
+// Vite is configured with base: '/resume/', so every asset and the document
+// itself are served under that prefix.
+const SITE_PATH = '/resume/';
+
+const PROFILE_NAME = 'Pedro Henrique Rocha Moy';
+const PROFILE_TITLE =
+  'Artificial Intelligence, Machine Learning, Data Science, Data & Software Engineering';
+
 test.describe('Contractor Site', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto(SITE_PATH);
   });
 
   test('page loads with correct title', async ({ page }) => {
@@ -16,18 +24,15 @@ test.describe('Contractor Site', () => {
   }) => {
     const nav = page.locator('nav');
     await expect(nav).toBeVisible();
-    await expect(nav.getByText('PHR Moy')).toBeVisible();
+    await expect(nav.getByText(PROFILE_NAME)).toBeVisible();
     await expect(
       nav.getByRole('link', { name: /download resume/i })
     ).toBeVisible();
     await expect(nav.getByRole('button', { name: /contact/i })).toBeVisible();
   });
 
-  test('profile column displays name and title', async ({ page }) => {
-    await expect(
-      page.getByRole('heading', { name: 'Pedro Henrique Rocha Moy' })
-    ).toBeVisible();
-    await expect(page.getByAltText('Pedro Henrique Rocha Moy')).toBeVisible();
+  test('profile column displays the photo', async ({ page }) => {
+    await expect(page.getByAltText(PROFILE_NAME)).toBeVisible();
   });
 
   test('navbar has social icon links', async ({ page }) => {
@@ -53,14 +58,20 @@ test.describe('Contractor Site', () => {
     ).toBeVisible();
   });
 
-  test('profile column shows inline interests', async ({ page }) => {
-    await expect(page.getByText(/Interests:.*ML & AI/)).toBeVisible();
+  // The title is rendered twice -- in the navbar for >=xl and in the profile
+  // column below xl -- with CSS hiding whichever does not apply. Exactly one
+  // copy must be visible at any viewport, so the text is never duplicated on
+  // screen and never disappears entirely.
+  test('professional title is visible exactly once', async ({ page }) => {
+    const copies = page.getByText(PROFILE_TITLE);
+    await expect(copies).toHaveCount(2);
+    await expect(copies.filter({ visible: true })).toHaveCount(1);
   });
 
   test('resume section has experience entries', async ({ page }) => {
     const resume = page.locator('#resume');
     await expect(resume).toBeVisible();
-    await expect(resume.getByText('Chief Architect')).toBeVisible();
+    await expect(resume.getByText('AI Advisor')).toBeVisible();
     await expect(resume.getByText('AI Consultant')).toBeVisible();
     await expect(resume.getByText('AI Software Developer')).toBeVisible();
   });
@@ -82,7 +93,7 @@ test.describe('Contractor Site', () => {
       name: /download resume/i,
     });
     await expect(downloadLink).toBeVisible();
-    await expect(downloadLink).toHaveAttribute('href', '/resume.pdf');
+    await expect(downloadLink).toHaveAttribute('href', '/resume/resume.pdf');
     await expect(downloadLink).toHaveAttribute('download', '');
   });
 

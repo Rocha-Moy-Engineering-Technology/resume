@@ -342,6 +342,3 @@ export const PROFILE = {
   github: 'https://github.com/phrmoy',
   linkedin: 'https://www.linkedin.com/in/phrmoy/',
 } as const;
-
-export const INTERESTS_INLINE_TEXT =
-  'Artificial Intelligence, Machine Learning, Data Science, Data & Software Engineering' as const;

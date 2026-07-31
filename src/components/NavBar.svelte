@@ -18,16 +18,16 @@
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
     <div class="flex min-w-0 flex-1 items-center gap-4 pr-4 lg:gap-8">
       <span
-        class="text-text-primary font-display shrink-0 text-xl font-bold whitespace-nowrap sm:text-2xl lg:text-3xl"
+        class="text-text-primary font-display text-base font-bold sm:shrink-0 sm:text-2xl sm:whitespace-nowrap lg:text-3xl"
         >{PROFILE.name}</span
       >
       <span
-        class="from-accent font-display flex-1 bg-gradient-to-r to-cyan-300 bg-clip-text text-left text-sm tracking-wide whitespace-normal text-transparent italic md:text-lg lg:text-right lg:text-xl"
+        class="from-accent font-display hidden flex-1 bg-gradient-to-r to-cyan-300 bg-clip-text text-right text-xl tracking-wide text-balance text-transparent italic xl:block"
       >
         {PROFILE.title}
       </span>
     </div>
-    <div class="flex items-center gap-5">
+    <div class="flex shrink-0 items-center gap-3 sm:gap-5">
       <a
         href="{import.meta.env.BASE_URL}resume.pdf"
         download={downloadFilename}

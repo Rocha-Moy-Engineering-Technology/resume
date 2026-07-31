@@ -9,6 +9,11 @@ describe('ProfileColumn', () => {
     expect(screen.getByAltText(PROFILE.name)).toBeInTheDocument();
   });
 
+  it('renders the professional title', () => {
+    render(ProfileColumn);
+    expect(screen.getByText(PROFILE.title)).toBeInTheDocument();
+  });
+
   it('renders education entries', () => {
     render(ProfileColumn);
     for (const entry of EDUCATION_ENTRIES) {
