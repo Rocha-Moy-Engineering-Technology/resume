@@ -15,19 +15,23 @@
 <nav
   class="border-border bg-bg-primary/90 sticky top-0 z-40 border-b backdrop-blur-md"
 >
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-    <div class="flex min-w-0 flex-1 items-center gap-4 pr-4 lg:gap-8">
+  <div
+    class="flex items-center justify-between gap-4 py-3 pl-6 lg:gap-8 lg:pl-0"
+  >
+    <div
+      class="flex min-w-0 flex-1 items-center lg:w-2/5 lg:flex-none lg:justify-center"
+    >
       <span
         class="text-text-primary font-display text-base font-bold sm:shrink-0 sm:text-2xl sm:whitespace-nowrap lg:text-3xl"
         >{PROFILE.name}</span
       >
-      <span
-        class="from-accent font-display hidden flex-1 bg-gradient-to-r to-cyan-300 bg-clip-text text-right text-xl tracking-wide text-balance text-transparent italic xl:block"
-      >
-        {PROFILE.title}
-      </span>
     </div>
-    <div class="flex shrink-0 items-center gap-3 sm:gap-5">
+    <span
+      class="from-accent font-display hidden min-w-0 flex-1 bg-gradient-to-r to-cyan-300 bg-clip-text text-right text-xl tracking-wide text-balance text-transparent italic xl:block"
+    >
+      {PROFILE.title}
+    </span>
+    <div class="flex shrink-0 items-center gap-3 pr-6 sm:gap-5">
       <a
         href="{import.meta.env.BASE_URL}resume.pdf"
         download={downloadFilename}
