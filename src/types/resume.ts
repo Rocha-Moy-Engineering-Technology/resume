@@ -24,9 +24,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Toptal Client',
     dates: '2026',
     descriptions: [
-      'Worked with managers and engineers to understand the existing state of affairs in the AI pipeline',
-      'Researched and delivered battle-tested strategies for AI pipelines',
-      'Delivered the final AI design pipeline resulting in a reduction in prompt sizes to over 90%',
+      "Partnered with managers and engineers to assess the company's AI pipeline, surfacing its pitfalls and inefficiencies",
+      'Researched and delivered battle-tested strategies improving the consistency and accuracy of the AI pipeline',
+      "Delivered the final AI pipeline design with robust safeguards, cutting the size of the AI's instructions by over 90%",
     ],
     technologies: [
       'LLMs',
@@ -40,10 +40,10 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Toptal Client',
     dates: '2026',
     descriptions: [
-      'Devised POC and MVP strategy and documentation for a new AI-driven technology',
-      'Designed and oversaw a series of case studies and experiments',
-      'Drove the POC and MVP work and provided leadership in close proximity to the CEO',
-      'Filled in the roles of leader and engineer to generate results',
+      'Devised the POC and MVP strategy and documentation for a new AI-driven technology',
+      'Designed and oversaw a series of case studies and experiments that culminated in a successful POC',
+      'Drove the POC and MVP work in direct partnership with the CEO',
+      'Operated as both leader and hands-on engineer, directing a PhD-level engineer on technical execution',
     ],
     technologies: [
       'LLMs',
@@ -59,9 +59,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Toptal Client',
     dates: '2025',
     descriptions: [
-      'Developed a prototype platform that automated LLC formation workflows, including a detailed regulatory study for Florida, reducing manual research time for new founders by well over 50%',
-      'Built a back-end LLM system that validated user inputs and flagged compliance gaps during the LLC creation process',
-      'Designed a domain-specific knowledge base and implemented an RAG pipeline to deliver precise, context-aware guidance',
+      'Delivered a prototype platform that automated LLC formation workflows, cutting manual research time by over 50%',
+      'Built an AI-driven validation step that vetted user inputs and flagged compliance gaps during the LLC creation process',
+      'Designed a domain-specific knowledge base and an intelligent AI search system that delivered precise, context-aware guidance',
     ],
     technologies: [
       'Python',
@@ -78,9 +78,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Toptal Client',
     dates: '2023 - 2024',
     descriptions: [
-      'Built a full-stack Django and React application that parsed contract requirement PDFs into structured suggestions and clarification questions',
-      'Engineered an autoscaling cloud infrastructure using ECS and IaC best practices for high-throughput document processing',
-      'Designed the end-to-end LLM architecture with OpenAI models, serving as primary expert for all LLM-related issues',
+      'Built from scratch a platform that converted contract requirement documents into structured suggestions and clarification questions',
+      'Engineered self-scaling cloud infrastructure for high-throughput document processing with near-zero downtime',
+      'Owned the end-to-end AI architecture and served as the primary expert on all AI matters',
     ],
     technologies: [
       'Python',
@@ -89,7 +89,7 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
       'React',
       'OpenAI API',
       'LLMs',
-      'AWS ECS',
+      'Amazon ECS',
       'Docker',
     ],
   },
@@ -98,9 +98,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Deloitte Contractor',
     dates: '2021 - 2022',
     descriptions: [
-      'Designed, implemented, and deployed different natural language processing models',
-      'Worked with stakeholders to understand use cases, the pathway to product development, and implementation',
-      'Mentored and supported junior data scientists on the team',
+      'Designed and delivered multiple natural language processing models through to production deployment',
+      'Partnered with stakeholders to define use cases and chart the pathway to product development',
+      'Mentored and developed the junior data scientists on the team',
     ],
     technologies: [
       'Python',
@@ -115,8 +115,8 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Toptal Client',
     dates: '2020 - 2022',
     descriptions: [
-      'Handled the architecture, development, and automation of distributed computing pipelines and data storage in the cloud',
-      'Automated scalable infrastructure in the cloud to respond to development and consumer demand',
+      "Owned the architecture, development, and automation of the enterprise's cloud data platform",
+      'Delivered automated, scalable cloud infrastructure that responded elastically to development and consumer demand',
       'Co-managed and supervised a team of engineers from designing and delegating tasks to mentoring',
     ],
     technologies: [
@@ -134,9 +134,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Toptal Client',
     dates: '2019 - 2020',
     descriptions: [
-      'Designed, implemented, and deployed fully-fledged distributed ETL jobs in Spark/Scala API',
-      'Worked with various sources and sinks of data including Hive tables, Mongo collections, and Kafka brokers',
-      'Served as senior engineer and tech lead strengthening engineering and development processes',
+      "Owned the design and production delivery of the company's large-scale distributed data processing pipelines",
+      'Integrated data across disparate sources and destinations, from raw files to real-time streams',
+      "Served as the team's senior engineer and tech lead, strengthening engineering processes",
     ],
     technologies: [
       'Scala',
@@ -154,9 +154,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Toptal Client',
     dates: '2019 - 2020',
     descriptions: [
-      'Built a cluster from scratch adhering to the client\u2019s needs to work with the home cluster',
-      'Designed and implemented generic and specific data architectures meeting query complexity and performance needs',
-      'Built PySpark and Python software layers of abstraction for the client to build on top of the infrastructure',
+      "Set up the framework for massive distributed computing on the client's existing in-house cluster",
+      'Designed and implemented general-purpose and specialized data architectures meeting query complexity and performance needs',
+      "Delivered accessible software layers that let the client's own teams build on top of the new infrastructure",
     ],
     technologies: [
       'PySpark',
@@ -173,9 +173,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: "Nicklaus Children's Hospital",
     dates: '2018 - 2019',
     descriptions: [
-      'Developed existing analytical and data workflows for users of R, Python, and Impala establishing best practices',
-      'Provided ad hoc and systematically developed ETL and big data pipelines with validation and integration',
-      'Liaised for the research department to IT and BI departments providing guidance and expertise',
+      "Advanced the research department's analytical and data workflows, establishing engineering best practices",
+      'Delivered ad hoc and systematic big data pipelines with validation and integration of varied sources',
+      'Represented the research department to the IT and business intelligence departments',
     ],
     technologies: [
       'Spark',
@@ -193,9 +193,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Insight Data Science',
     dates: '2018',
     descriptions: [
-      'Worked with fellows on data engineering projects covering problem definition, systems architecture, and execution',
-      'Advised on technologies such as Spark, Kafka, Redis, HBase, Cassandra, and PostgreSQL',
-      'Conducted mock interviews on scalability concepts, algorithms, and CS fundamentals',
+      'Advised program fellows on their data engineering projects across problem definition, systems architecture, and execution',
+      'Guided technology selection and architecture for distributed data platforms',
+      'Coached fellows through mock interviews covering scalability concepts, algorithms, and CS fundamentals',
     ],
     technologies: [
       'Spark',
@@ -212,9 +212,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'NexHealth',
     dates: '2016 - 2017',
     descriptions: [
-      'Developed and deployed software for data collection and server sync at client sites',
-      'Performed database and web-based data integrations of electronic medical records',
-      'Developed a smart SMS response system for user interaction with NexHealth products',
+      'Developed and deployed software at client sites to automate data collection and server synchronization',
+      'Integrated electronic medical records from client systems across database and web channels',
+      "Created a smart text-message response system for interacting with the company's products via SMS",
     ],
     technologies: [
       'Python',
@@ -231,9 +231,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'QuaEra Insights',
     dates: '2016',
     descriptions: [
-      'Served as lead data scientist in a consulting project overseeing data management and modeling strategy',
-      'Used NLP to transform unstructured data into features and extract business intelligence',
-      'Built a recommendation engine potentially yielding savings on up to 50% of the business',
+      'Led data science for a consulting engagement, overseeing data management and modeling strategy',
+      'Applied natural language processing to turn unstructured data into actionable business intelligence',
+      'Built a recommendation engine that unlocked substantial cost savings in 50% of cases',
     ],
     technologies: [
       'Python',
@@ -249,9 +249,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Insight Data Science',
     dates: '2015',
     descriptions: [
-      'Built themidgame-tube, a platform to discover YouTube influencers on brand names worldwide',
-      "Deployed Amazon's EMR Spark with HBase processing and ingesting billions of data tuples",
-      'Attained linear scalability performance tested with up to 20 nodes',
+      'Built themidgame-tube, a platform to discover YouTube influencers for brands worldwide',
+      'Deployed a cloud-based big data platform that collected and processed billions of data records',
+      'Proved linear scalability in performance testing across a cluster of up to 20 machines',
     ],
     technologies: [
       'Python',
@@ -268,9 +268,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Cartesian',
     dates: '2015',
     descriptions: [
-      'Aided managed analytics efforts promoting best practices within batch workflows and data management',
-      'Conducted independent research into big data workflows considering data mining and BI integration',
-      'Built short data pipelines consuming APIs, transforming, loading, and exposing data to BI tools',
+      'Supported managed analytics engagements, promoting best practices in batch workflows and data management',
+      'Conducted independent research into big data workflows, spanning data mining and business intelligence integration',
+      'Built lightweight data pipelines that gathered, transformed, and delivered external data into business intelligence tools',
     ],
     technologies: [
       'Python',
@@ -286,9 +286,9 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Daktari Diagnostics',
     dates: '2013 - 2015',
     descriptions: [
-      'Lead developer of mainstream data processing and data analysis applications in Python for Windows/Mac',
-      'Developed a calibration model for the Daktari CD4 testing device improving accuracy by 20-30%',
-      'Deployed machine learning models embedded in standalone applications for data classification',
+      "Lead developer of the company's primary data processing and analysis applications for desktop platforms",
+      "Developed a calibration model for the company's CD4 diagnostic device, improving system accuracy by 20-30%",
+      'Shipped machine learning models embedded in standalone end-user applications for automated data classification',
     ],
     technologies: [
       'Python',
@@ -306,7 +306,7 @@ export const PORTFOLIO_ENTRIES: readonly PortfolioEntry[] = [
     title: 'Pastoral Conscience AI',
     url: 'https://rocha-moy-engineering-technology.github.io/pastoral_conscience_site/',
     description:
-      'Built an "Artificial Conscience" AI system that generates scripture-grounded spiritual reflections using RAG retrieval from Psalms and DSPy-based conscience checkers. Architecture: Go back end with hexagonal architecture, Gemini File Search API for RAG retrieval, Python and DSPy services for conscience checkers, Next.js front end with real-time SSE progress updates, and PostgreSQL for data persistence.',
+      'Built an "Artificial Conscience" AI system that generates scripture-grounded spiritual reflections using RAG over the Psalms and DSPy-based conscience checkers. Governed reasoning pipeline with three verification layers — Helpfulness, Psalm Grounding, and Citation Integrity — where every response is scored, verified, and corrected before delivery. Architecture: Go backend with hexagonal architecture, Gemini File Search API as the retrieval layer, Python and DSPy services for conscience checkers with model fallback, Next.js frontend with real-time SSE progress updates, and PostgreSQL for data persistence.',
   },
 ] as const;
 
@@ -317,18 +317,17 @@ export const EDUCATION_ENTRIES: readonly EducationEntry[] = [
     dates: '2021 - 2022',
   },
   {
-    degree: 'Master\u2019s Degree in Computer Science (Machine Learning)',
+    degree: "Master's Degree in Computer Science (Machine Learning)",
     institution: 'Georgia Institute of Technology',
     dates: '2015 - 2017',
   },
   {
-    degree:
-      'Master\u2019s Degree in Earth Science and Engineering (Geophysics)',
+    degree: "Master's Degree in Earth Science and Engineering (Geophysics)",
     institution: 'King Abdullah University of Science and Technology',
     dates: '2010 - 2012',
   },
   {
-    degree: 'Bachelor\u2019s Degree in Mechanical Engineering (Math Minor)',
+    degree: "Bachelor's Degree in Mechanical Engineering (Math Minor)",
     institution: 'University of Massachusetts Lowell',
     dates: '2008 - 2010',
   },

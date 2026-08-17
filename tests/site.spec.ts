@@ -14,9 +14,7 @@ test.describe('Contractor Site', () => {
   });
 
   test('page loads with correct title', async ({ page }) => {
-    await expect(page).toHaveTitle(
-      'Pedro Henrique Rocha Moy - Data Scientist and Machine Learning Developer'
-    );
+    await expect(page).toHaveTitle(`${PROFILE_NAME} - ${PROFILE_TITLE}`);
   });
 
   test('navigation bar is visible with download and contact', async ({
