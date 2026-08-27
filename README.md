@@ -4,6 +4,16 @@ Personal resume website showcasing professional experience, portfolio projects, 
 
 **Live:** https://rocha-moy-engineering-technology.github.io/resume
 
+## Screenshots
+
+Captured from the production build; sources in `docs/screenshots/`.
+
+| View          | Light                                                                   | Dark                                                                  |
+| ------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Desktop       | ![Desktop, light theme](docs/screenshots/desktop-light.png)             | ![Desktop, dark theme](docs/screenshots/desktop-dark.png)             |
+| Mobile        | ![Mobile, light theme](docs/screenshots/mobile-light.png)               | ![Mobile, dark theme](docs/screenshots/mobile-dark.png)               |
+| Contact modal | ![Contact modal, light theme](docs/screenshots/contact-modal-light.png) | ![Contact modal, dark theme](docs/screenshots/contact-modal-dark.png) |
+
 ## Features
 
 - Professional experience timeline with role descriptions and technology tags
@@ -12,7 +22,8 @@ Personal resume website showcasing professional experience, portfolio projects, 
 - Downloadable PDF resume
 - Contact form powered by [Web3Forms](https://web3forms.com/)
 - Responsive two-column layout (desktop) with single-column mobile fallback
-- Dark theme
+- Light and dark themes that follow the visitor's system preference, with a
+  navbar toggle whose choice is remembered and applied before first paint
 
 ## Tech Stack
 

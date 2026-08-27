@@ -1,11 +1,15 @@
 <script lang="ts">
+  import ThemeToggle from './ThemeToggle.svelte';
   import { PROFILE } from '../types/resume';
+  import type { Theme } from '../types/theme';
 
   interface Props {
+    theme: Theme;
+    onthemetoggle: () => void;
     oncontact: () => void;
   }
 
-  let { oncontact }: Props = $props();
+  let { theme, onthemetoggle, oncontact }: Props = $props();
 
   const now = new Date();
   const rev = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
@@ -13,34 +17,35 @@
 </script>
 
 <nav
-  class="border-border bg-bg-primary/90 sticky top-0 z-40 border-b backdrop-blur-md"
+  class="border-line bg-canvas-veil sticky top-0 z-40 border-b backdrop-blur-xl"
 >
   <div
-    class="flex items-center justify-between gap-4 py-3 pl-6 lg:gap-8 lg:pl-0"
+    class="flex items-center justify-between gap-3 py-3 pl-4 sm:gap-4 sm:pl-6 lg:gap-8 lg:pl-0"
   >
     <div
       class="flex min-w-0 flex-1 items-center lg:w-2/5 lg:flex-none lg:justify-center"
     >
       <span
-        class="text-text-primary font-display text-base font-bold sm:shrink-0 sm:text-2xl sm:whitespace-nowrap lg:text-3xl"
+        class="text-ink font-display text-[0.95rem] leading-[1.15] font-semibold tracking-[-0.01em] sm:shrink-0 sm:text-2xl sm:leading-normal sm:whitespace-nowrap lg:text-[1.65rem]"
         >{PROFILE.name}</span
       >
     </div>
     <span
-      class="from-accent font-display hidden min-w-0 flex-1 bg-gradient-to-r to-cyan-300 bg-clip-text text-right text-xl tracking-wide text-balance text-transparent italic xl:block"
+      class="text-accent font-display hidden min-w-0 flex-1 text-right text-[1.05rem] leading-snug tracking-wide text-balance italic xl:block"
     >
       {PROFILE.title}
     </span>
-    <div class="flex shrink-0 items-center gap-3 pr-6 sm:gap-5">
+    <div class="flex shrink-0 items-center gap-0 pr-3 sm:gap-1 sm:pr-6">
+      <ThemeToggle {theme} ontoggle={onthemetoggle} />
       <a
         href="{import.meta.env.BASE_URL}resume.pdf"
         download={downloadFilename}
         aria-label="Download Resume"
-        class="tooltip text-text-secondary hover:text-accent relative transition-colors duration-200"
+        class="tooltip text-ink-soft hover:bg-accent-soft hover:text-accent relative rounded-full p-1.5 transition-colors duration-200 sm:p-2"
       >
         <svg
-          width="20"
-          height="20"
+          width="19"
+          height="19"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -57,7 +62,7 @@
           <polyline points="9 15 12 18 15 15" />
         </svg>
         <span
-          class="tooltip-text pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded bg-gray-800 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity duration-150"
+          class="tooltip-text border-line bg-surface text-ink-soft pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded-lg border px-2.5 py-1 text-xs whitespace-nowrap opacity-0 shadow-sm transition-opacity duration-150"
         >
           Download Resume PDF
         </span>
@@ -67,11 +72,11 @@
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub"
-        class="text-text-secondary hover:text-accent transition-colors duration-200"
+        class="text-ink-soft hover:bg-accent-soft hover:text-accent rounded-full p-1.5 transition-colors duration-200 sm:p-2"
       >
         <svg
-          width="20"
-          height="20"
+          width="19"
+          height="19"
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden="true"
@@ -86,11 +91,11 @@
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        class="text-text-secondary hover:text-accent transition-colors duration-200"
+        class="text-ink-soft hover:bg-accent-soft hover:text-accent rounded-full p-1.5 transition-colors duration-200 sm:p-2"
       >
         <svg
-          width="20"
-          height="20"
+          width="19"
+          height="19"
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden="true"
@@ -103,7 +108,7 @@
       <button
         type="button"
         onclick={oncontact}
-        class="bg-accent hover:bg-accent-hover rounded-lg px-4 py-2 text-sm font-semibold text-white transition-colors duration-200"
+        class="bg-accent text-accent-contrast hover:bg-accent-strong ml-1 shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200 sm:ml-1.5 sm:px-5 sm:py-2 sm:text-sm"
       >
         Contact
       </button>

@@ -7,6 +7,10 @@
   import type { FormData, FormErrors } from '../types/contact';
   import { validateFormData } from '../logic/validation';
 
+  const FIELD_CLASS =
+    'w-full rounded-xl border border-line bg-canvas px-4 py-3 text-ink placeholder:text-ink-faint transition-colors duration-200 outline-none focus:border-accent';
+  const LABEL_CLASS = 'mb-2 block text-sm font-medium text-ink';
+
   let formState = $state<FormState>(FormState.Idle);
   let formData = $state<FormData>({ ...EMPTY_FORM_DATA });
   let errors = $state<FormErrors>({ ...EMPTY_FORM_ERRORS });
@@ -76,14 +80,14 @@
 </script>
 
 {#if formState === FormState.Success}
-  <div class="bg-success/10 border-success rounded-xl border p-6 text-center">
+  <div class="border-line bg-canvas rounded-xl border p-6 text-center">
     <p class="text-success text-lg font-semibold">{submissionMessage}</p>
     <button
       type="button"
       onclick={() => {
         formState = FormState.Idle;
       }}
-      class="bg-accent hover:bg-accent-hover mt-4 rounded-lg px-6 py-3 font-semibold text-white transition-colors duration-200"
+      class="bg-accent text-accent-contrast hover:bg-accent-strong mt-5 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200"
     >
       Send another message
     </button>
@@ -98,65 +102,50 @@
     class="space-y-5"
   >
     <div>
-      <label
-        for="name"
-        class="text-text-primary mb-2 block text-sm font-medium"
-      >
-        Name
-      </label>
+      <label for="name" class={LABEL_CLASS}>Name</label>
       <input
         id="name"
         type="text"
         value={formData.name}
         oninput={(e: Event) =>
           handleInput('name', (e.target as HTMLInputElement).value)}
-        class="border-border text-text-primary focus:border-accent w-full rounded-lg border bg-white px-4 py-3 transition-colors duration-200 outline-none"
+        class={FIELD_CLASS}
         placeholder="Your name"
       />
       {#if errors.name}
-        <p class="text-error mt-1 text-sm">{errors.name}</p>
+        <p class="text-error mt-1.5 text-sm">{errors.name}</p>
       {/if}
     </div>
 
     <div>
-      <label
-        for="email"
-        class="text-text-primary mb-2 block text-sm font-medium"
-      >
-        Email
-      </label>
+      <label for="email" class={LABEL_CLASS}>Email</label>
       <input
         id="email"
         type="email"
         value={formData.email}
         oninput={(e: Event) =>
           handleInput('email', (e.target as HTMLInputElement).value)}
-        class="border-border text-text-primary focus:border-accent w-full rounded-lg border bg-white px-4 py-3 transition-colors duration-200 outline-none"
+        class={FIELD_CLASS}
         placeholder="your@email.com"
       />
       {#if errors.email}
-        <p class="text-error mt-1 text-sm">{errors.email}</p>
+        <p class="text-error mt-1.5 text-sm">{errors.email}</p>
       {/if}
     </div>
 
     <div>
-      <label
-        for="message"
-        class="text-text-primary mb-2 block text-sm font-medium"
-      >
-        Message
-      </label>
+      <label for="message" class={LABEL_CLASS}>Message</label>
       <textarea
         id="message"
         value={formData.message}
         oninput={(e: Event) =>
           handleInput('message', (e.target as HTMLTextAreaElement).value)}
         rows={5}
-        class="border-border text-text-primary focus:border-accent w-full resize-none rounded-lg border bg-white px-4 py-3 transition-colors duration-200 outline-none"
+        class="{FIELD_CLASS} resize-none"
         placeholder="Your message..."
       ></textarea>
       {#if errors.message}
-        <p class="text-error mt-1 text-sm">{errors.message}</p>
+        <p class="text-error mt-1.5 text-sm">{errors.message}</p>
       {/if}
     </div>
 
@@ -167,7 +156,7 @@
     <button
       type="submit"
       disabled={isSubmitting}
-      class="bg-accent hover:bg-accent-hover w-full rounded-lg px-6 py-3 font-semibold text-white transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50"
+      class="bg-accent text-accent-contrast hover:bg-accent-strong w-full rounded-full px-6 py-3 font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {isSubmitting ? 'Sending...' : 'Send Message'}
     </button>

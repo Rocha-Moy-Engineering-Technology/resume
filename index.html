@@ -4,16 +4,47 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f7f7f5"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#0a0c12"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <title>
       Pedro Henrique Rocha Moy - Artificial Intelligence, Machine Learning, Data
-      Science, Data & Software Engineering
+      Science, Data &amp; Software Engineering
     </title>
+    <script>
+      /*
+       * Pre-paint theme bootstrap. The placeholders are substituted at build
+       * time from src/types/theme.ts, so the key, attribute and media query can
+       * never drift from the application code.
+       */
+      (function () {
+        try {
+          var stored = window.localStorage.getItem('__THEME_STORAGE_KEY__');
+          var explicit = stored === 'light' || stored === 'dark';
+          var dark = window.matchMedia('__DARK_SCHEME_QUERY__').matches;
+          document.documentElement.setAttribute(
+            '__THEME_ATTRIBUTE__',
+            explicit ? stored : dark ? 'dark' : 'light'
+          );
+        } catch (error) {
+          document.documentElement.setAttribute('__THEME_ATTRIBUTE__', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>

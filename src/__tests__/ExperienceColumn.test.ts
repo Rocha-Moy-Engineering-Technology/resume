@@ -42,10 +42,13 @@ describe('ExperienceColumn', () => {
     }
   });
 
-  it('renders technology tags', () => {
-    const { container } = render(ExperienceColumn);
-    const tags = container.querySelectorAll('.bg-tag-bg');
-    expect(tags.length).toBeGreaterThan(0);
+  it('renders the technology tags of every entry', () => {
+    render(ExperienceColumn);
+    for (const entry of EXPERIENCE_ENTRIES) {
+      for (const technology of entry.technologies) {
+        expect(screen.getAllByText(technology).length).toBeGreaterThan(0);
+      }
+    }
   });
 
   it('renders the portfolio heading', () => {

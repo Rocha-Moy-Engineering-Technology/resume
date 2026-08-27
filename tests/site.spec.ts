@@ -92,7 +92,10 @@ test.describe('Contractor Site', () => {
     });
     await expect(downloadLink).toBeVisible();
     await expect(downloadLink).toHaveAttribute('href', '/resume/resume.pdf');
-    await expect(downloadLink).toHaveAttribute('download', '');
+    await expect(downloadLink).toHaveAttribute(
+      'download',
+      /^PHRMOY_RESUME_rev\d{8}\.pdf$/
+    );
   });
 
   test('contact modal opens and closes', async ({ page }) => {
@@ -113,5 +116,32 @@ test.describe('Contractor Site', () => {
 
     await page.getByRole('button', { name: /close contact form/i }).click();
     await expect(dialog).not.toBeVisible();
+  });
+});
+
+test.describe('Theme', () => {
+  test('follows the operating system preference on first visit', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto(SITE_PATH);
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+    await page.emulateMedia({ colorScheme: 'light' });
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  });
+
+  test('the toggle pins a theme that survives a reload', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto(SITE_PATH);
+
+    await page.getByRole('button', { name: /switch to light theme/i }).click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+    await expect(
+      page.getByRole('button', { name: /switch to dark theme/i })
+    ).toBeVisible();
   });
 });

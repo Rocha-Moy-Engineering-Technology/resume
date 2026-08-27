@@ -1,39 +1,81 @@
 @import 'tailwindcss';
 
+/*
+ * Palette. Every colour is declared exactly once, as a `light-dark()` pair, so
+ * a theme switch is a single `color-scheme` change on <html> rather than a
+ * second copy of the palette. `data-theme` is written by the theme controller
+ * (and, before first paint, by the bootstrap snippet in index.html); with
+ * scripting disabled the root keeps `color-scheme: light dark` and simply
+ * follows the operating system.
+ */
 :root {
-  --bg-primary: #020617;
-  --bg-surface: #0f172a;
-  --bg-card: #0f172a;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent: #38bdf8;
-  --accent-hover: #7dd3fc;
-  --border: #1e293b;
-  --divider: #1e293b;
-  --tag-bg: rgba(56, 189, 248, 0.1);
-  --tag-text: #38bdf8;
-  --success: #22c55e;
-  --error: #ef4444;
-  --backdrop: rgba(0, 0, 0, 0.8);
+  color-scheme: light dark;
+
+  --canvas: light-dark(#f7f7f5, #0a0c12);
+  --canvas-veil: light-dark(rgba(247, 247, 245, 0.82), rgba(10, 12, 18, 0.78));
+  --surface: light-dark(#ffffff, #12151d);
+  --surface-hover: light-dark(#ffffff, #161a24);
+  --ink: light-dark(#17181a, #f1f3f6);
+  --ink-soft: light-dark(#5c6068, #9aa1ad);
+  --ink-faint: light-dark(#8b8f98, #6d7482);
+  --line: light-dark(#e5e4e0, #222734);
+  --line-strong: light-dark(#d3d2cd, #2e3442);
+  --accent: light-dark(#0e7490, #4fc3e8);
+  --accent-strong: light-dark(#0b5b73, #7ad4f0);
+  --accent-soft: light-dark(rgba(14, 116, 144, 0.09), rgba(79, 195, 232, 0.13));
+  --accent-line: light-dark(rgba(14, 116, 144, 0.32), rgba(79, 195, 232, 0.34));
+  --accent-contrast: light-dark(#ffffff, #04161e);
+  --success: light-dark(#15803d, #4ade80);
+  --error: light-dark(#b91c1c, #f87171);
+  --backdrop: light-dark(rgba(23, 24, 26, 0.42), rgba(2, 4, 8, 0.72));
+
+  /* Backdrop behind the cut-out portrait. */
+  --disc-top: light-dark(#e9f2f6, #1d2c3a);
+  --disc-bottom: light-dark(#cddce6, #0d1219);
+  --disc-glow: light-dark(rgba(14, 116, 144, 0.18), rgba(79, 195, 232, 0.16));
 }
 
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
 @theme {
-  --color-bg-primary: var(--bg-primary);
-  --color-bg-surface: var(--bg-surface);
-  --color-bg-card: var(--bg-card);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
+  --color-canvas: var(--canvas);
+  --color-canvas-veil: var(--canvas-veil);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-border: var(--border);
-  --color-divider: var(--divider);
-  --color-tag-bg: var(--tag-bg);
-  --color-tag-text: var(--tag-text);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-accent-contrast: var(--accent-contrast);
   --color-success: var(--success);
   --color-error: var(--error);
   --color-backdrop: var(--backdrop);
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Source Sans 3', system-ui, sans-serif;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+
+  --radius-card: 1rem;
+
+  --shadow-card: 0 1px 2px
+    light-dark(rgba(16, 24, 40, 0.05), rgba(0, 0, 0, 0.35));
+  --shadow-lift: 0 18px 36px -20px light-dark(rgba(14, 116, 144, 0.35), rgba(0, 0, 0, 0.75));
+  --shadow-portrait: 0 26px 60px -28px var(--disc-glow);
+  --shadow-modal: 0 32px 80px -24px light-dark(rgba(16, 24, 40, 0.28), rgba(0, 0, 0, 0.8));
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -41,9 +83,12 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -51,4 +96,35 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Quiet scrollbars so the two sticky columns do not fight the layout. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
