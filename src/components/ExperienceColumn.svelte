@@ -16,7 +16,7 @@
   >
     <SectionHeading title="Experience" />
 
-    <div class="mt-10">
+    <div class="mt-7">
       {#each EXPERIENCE_ENTRIES as entry (entry.title)}
         <article class="entry py-8">
           <div
@@ -48,7 +48,7 @@
 
     <div class="mt-16">
       <SectionHeading title="Portfolio" />
-      <div class="mt-10">
+      <div class="mt-7">
         {#each PORTFOLIO_ENTRIES as entry (entry.title)}
           <article class="entry group py-8">
             <a

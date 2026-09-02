@@ -14,7 +14,17 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        // Containers without a downloadable browser point this at one they have.
+        ...(process.env.PLAYWRIGHT_CHROMIUM_PATH
+          ? {
+              launchOptions: {
+                executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH,
+              },
+            }
+          : {}),
+      },
     },
   ],
   webServer: {

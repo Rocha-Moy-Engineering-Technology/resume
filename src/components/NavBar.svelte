@@ -26,7 +26,7 @@
       class="flex min-w-0 flex-1 items-center lg:w-2/5 lg:flex-none lg:justify-center"
     >
       <span
-        class="display text-ink text-[1.05rem] sm:shrink-0 sm:text-2xl sm:whitespace-nowrap lg:text-[1.6rem]"
+        class="display text-ink text-[0.95rem] sm:shrink-0 sm:text-2xl sm:whitespace-nowrap lg:text-[1.6rem]"
         >{PROFILE.name}</span
       >
     </div>

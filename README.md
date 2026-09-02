@@ -14,6 +14,16 @@ Captured from the production build; sources in `docs/screenshots/`.
 | Mobile        | ![Mobile, light theme](docs/screenshots/mobile-light.png)               | ![Mobile, dark theme](docs/screenshots/mobile-dark.png)               |
 | Contact modal | ![Contact modal, light theme](docs/screenshots/contact-modal-light.png) | ![Contact modal, dark theme](docs/screenshots/contact-modal-dark.png) |
 
+## Design
+
+The site shares its design system with the
+[rmet-publishing blog](https://rocha-moy-engineering-technology.github.io/rmet-publishing/):
+black ground, Barlow Condensed set in uppercase for display type, Barlow for
+body copy, hairline rules instead of filled cards, square corners, and no accent
+colour. The shared vocabulary lives in `src/app.css` as `display`, `label`,
+`icon-link`, `entry`, `entry-title`, `chip` and `action`; those class names mean
+the same thing on both sites.
+
 ## Features
 
 - Professional experience timeline with role descriptions and technology tags
@@ -29,7 +39,9 @@ Captured from the production build; sources in `docs/screenshots/`.
 
 - **Framework:** Svelte 5 + Vite
 - **Styling:** Tailwind CSS v4
-- **Testing:** Vitest (unit), Playwright (e2e)
+- **Testing:** Vitest (unit), Playwright (e2e). Set `PLAYWRIGHT_CHROMIUM_PATH`
+  to run the end-to-end suite against a supplied Chromium, for example in a
+  container with no downloadable browser; unset, it uses the usual one.
 - **Deployment:** GitHub Pages via GitHub Actions
 
 ## Development
