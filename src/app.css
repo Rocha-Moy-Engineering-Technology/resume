@@ -1,38 +1,38 @@
 @import 'tailwindcss';
 
 /*
- * Palette. Every colour is declared exactly once, as a `light-dark()` pair, so
- * a theme switch is a single `color-scheme` change on <html> rather than a
- * second copy of the palette. `data-theme` is written by the theme controller
- * (and, before first paint, by the bootstrap snippet in index.html); with
- * scripting disabled the root keeps `color-scheme: light dark` and simply
- * follows the operating system.
+ * Palette. Shared with the rmet-publishing blog so the two sites read as one
+ * system: black ground, white ink, one grey for everything secondary, and
+ * hairlines instead of filled surfaces. There is no accent colour; hierarchy
+ * comes from type size, weight and letter-spacing.
+ *
+ * Every colour is declared exactly once, as a `light-dark()` pair, so a theme
+ * switch is a single `color-scheme` change on <html> rather than a second copy
+ * of the palette. `data-theme` is written by the theme controller (and, before
+ * first paint, by the bootstrap snippet in index.html); with scripting disabled
+ * the root keeps `color-scheme: light dark` and simply follows the operating
+ * system.
  */
 :root {
   color-scheme: light dark;
 
-  --canvas: light-dark(#f7f7f5, #0a0c12);
-  --canvas-veil: light-dark(rgba(247, 247, 245, 0.82), rgba(10, 12, 18, 0.78));
-  --surface: light-dark(#ffffff, #12151d);
-  --surface-hover: light-dark(#ffffff, #161a24);
-  --ink: light-dark(#17181a, #f1f3f6);
-  --ink-soft: light-dark(#5c6068, #9aa1ad);
-  --ink-faint: light-dark(#8b8f98, #6d7482);
-  --line: light-dark(#e5e4e0, #222734);
-  --line-strong: light-dark(#d3d2cd, #2e3442);
-  --accent: light-dark(#0e7490, #4fc3e8);
-  --accent-strong: light-dark(#0b5b73, #7ad4f0);
-  --accent-soft: light-dark(rgba(14, 116, 144, 0.09), rgba(79, 195, 232, 0.13));
-  --accent-line: light-dark(rgba(14, 116, 144, 0.32), rgba(79, 195, 232, 0.34));
-  --accent-contrast: light-dark(#ffffff, #04161e);
+  --canvas: light-dark(#ffffff, #000000);
+  --canvas-veil: light-dark(rgba(255, 255, 255, 0.88), rgba(0, 0, 0, 0.88));
+  --surface: light-dark(#f4f4f4, #0a0a0a);
+  --ink: light-dark(#000000, #ffffff);
+  --ink-soft: light-dark(#5f5f5f, #8c8c8c);
+  --ink-faint: light-dark(#8a8a8a, #6a6a6a);
+  --line: light-dark(#dcdcdc, #232323);
+  --line-strong: light-dark(#b4b4b4, #3a3a3a);
+  --backdrop: light-dark(rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0.82));
+
+  /* Kept because they carry meaning a reader acts on, not decoration. */
   --success: light-dark(#15803d, #4ade80);
   --error: light-dark(#b91c1c, #f87171);
-  --backdrop: light-dark(rgba(23, 24, 26, 0.42), rgba(2, 4, 8, 0.72));
 
-  /* Backdrop behind the cut-out portrait. */
-  --disc-top: light-dark(#e9f2f6, #1d2c3a);
-  --disc-bottom: light-dark(#cddce6, #0d1219);
-  --disc-glow: light-dark(rgba(14, 116, 144, 0.18), rgba(79, 195, 232, 0.16));
+  /* Neutral disc behind the cut-out portrait. */
+  --disc-top: light-dark(#ededed, #151515);
+  --disc-bottom: light-dark(#d6d6d6, #050505);
 }
 
 :root[data-theme='light'] {
@@ -49,31 +49,18 @@
   --color-canvas: var(--canvas);
   --color-canvas-veil: var(--canvas-veil);
   --color-surface: var(--surface);
-  --color-surface-hover: var(--surface-hover);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-faint: var(--ink-faint);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
-  --color-accent: var(--accent);
-  --color-accent-strong: var(--accent-strong);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-line: var(--accent-line);
-  --color-accent-contrast: var(--accent-contrast);
+  --color-backdrop: var(--backdrop);
   --color-success: var(--success);
   --color-error: var(--error);
-  --color-backdrop: var(--backdrop);
 
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
-
-  --radius-card: 1rem;
-
-  --shadow-card: 0 1px 2px
-    light-dark(rgba(16, 24, 40, 0.05), rgba(0, 0, 0, 0.35));
-  --shadow-lift: 0 18px 36px -20px light-dark(rgba(14, 116, 144, 0.35), rgba(0, 0, 0, 0.75));
-  --shadow-portrait: 0 26px 60px -28px var(--disc-glow);
-  --shadow-modal: 0 32px 80px -24px light-dark(rgba(16, 24, 40, 0.28), rgba(0, 0, 0, 0.8));
+  --font-display: 'Barlow Condensed', 'Helvetica Neue', 'Arial Narrow',
+    sans-serif;
+  --font-body: 'Barlow', -apple-system, 'Helvetica Neue', Arial, sans-serif;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -86,33 +73,122 @@ body {
   background-color: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-}
-
 ::selection {
-  background-color: var(--color-accent-soft);
-  color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline: 1px solid var(--color-ink);
+  outline-offset: 4px;
 }
 
 /* Quiet scrollbars so the two sticky columns do not fight the layout. */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-line-strong) transparent;
+}
+
+/*
+ * The shared vocabulary. These are the same classes the blog defines, so a
+ * heading, a label or a chip is described the same way on both sites.
+ */
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .label {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    color: var(--color-ink-soft);
+  }
+
+  .icon-link {
+    color: var(--color-ink-soft);
+    transition: color 0.15s ease;
+  }
+
+  .icon-link:hover {
+    color: var(--color-ink);
+  }
+
+  .entry {
+    border-top: 1px solid var(--color-line);
+    transition: border-color 0.2s ease;
+  }
+
+  .entry:hover {
+    border-color: var(--color-line-strong);
+  }
+
+  .entry-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    color: var(--color-ink);
+  }
+
+  .chip {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    color: var(--color-ink-soft);
+    border: 1px solid var(--color-line);
+    padding: 0.35rem 0.75rem;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .chip:hover {
+    color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+
+  /* The one filled control on the site: the primary action in a form. */
+  .action {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    background-color: var(--color-ink);
+    color: var(--color-canvas);
+    border: 1px solid var(--color-ink);
+    padding: 0.85rem 1.5rem;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .action:hover:not(:disabled) {
+    background-color: transparent;
+    color: var(--color-ink);
+  }
+
+  .action:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

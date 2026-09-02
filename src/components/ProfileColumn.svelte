@@ -17,7 +17,7 @@
         aria-hidden="true"
       ></span>
       <div
-        class="ring-accent-line shadow-portrait portrait-disc relative h-full w-full overflow-hidden rounded-full ring-1"
+        class="ring-line-strong portrait-disc relative h-full w-full overflow-hidden rounded-full ring-1"
       >
         <img
           src={profilePortrait}
@@ -29,30 +29,22 @@
       </div>
     </div>
 
-    <p
-      class="text-accent font-display mt-9 text-center text-lg leading-snug tracking-wide text-balance italic xl:hidden"
-    >
+    <p class="label mt-9 text-center text-balance xl:hidden">
       {PROFILE.title}
     </p>
 
     <section class="mt-10 xl:mt-12">
-      <h2
-        class="text-ink-faint font-body text-[0.7rem] font-semibold tracking-[0.22em] uppercase"
-      >
-        Education
-      </h2>
+      <h2 class="label">Education</h2>
       <div class="border-line mt-4 border-t">
         {#each EDUCATION_ENTRIES as entry (entry.degree)}
           <div class="border-line border-b py-4">
-            <p class="text-ink text-[0.95rem] leading-snug font-semibold">
+            <p class="entry-title text-ink text-[1.0625rem]">
               {entry.degree}
             </p>
-            <p class="text-ink-soft mt-1 text-sm">
+            <p class="text-ink-soft mt-1.5 text-sm">
               {entry.institution}
             </p>
-            <p
-              class="text-ink-faint mt-1 text-xs tracking-[0.08em] tabular-nums"
-            >
+            <p class="label mt-2 text-[0.6875rem] tabular-nums">
               {entry.dates}
             </p>
           </div>

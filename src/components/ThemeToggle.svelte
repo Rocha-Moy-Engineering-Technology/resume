@@ -17,7 +17,7 @@
   onclick={ontoggle}
   aria-label={label}
   title={label}
-  class="text-ink-soft hover:bg-accent-soft hover:text-accent rounded-full p-1.5 transition-colors duration-200 sm:p-2"
+  class="icon-link p-1.5 sm:p-2"
 >
   {#if theme === Theme.Dark}
     <svg

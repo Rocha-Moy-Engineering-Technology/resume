@@ -35,12 +35,12 @@
     onclick={handleBackdropClick}
   >
     <div
-      class="border-line bg-surface shadow-modal modal-panel relative w-full max-w-lg rounded-2xl border p-7 sm:p-9"
+      class="border-line bg-canvas modal-panel relative w-full max-w-lg border p-7 sm:p-9"
     >
       <button
         type="button"
         onclick={onclose}
-        class="text-ink-faint hover:bg-accent-soft hover:text-accent absolute top-4 right-4 rounded-full p-1.5 transition-colors duration-200"
+        class="icon-link absolute top-4 right-4 p-1.5"
         aria-label="Close contact form"
       >
         <svg
@@ -57,14 +57,8 @@
         </svg>
       </button>
 
-      <p
-        class="text-ink-faint font-body text-[0.7rem] font-semibold tracking-[0.22em] uppercase"
-      >
-        Contact
-      </p>
-      <h2 class="text-ink font-display mt-2 mb-7 text-2xl font-semibold">
-        Get in Touch
-      </h2>
+      <p class="label">Contact</p>
+      <h2 class="display text-ink mt-3 mb-8 text-[1.75rem]">Get in Touch</h2>
 
       <ContactForm />
     </div>
@@ -92,11 +86,11 @@
   @keyframes panel-in {
     from {
       opacity: 0;
-      transform: translateY(10px) scale(0.985);
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
   }
 </style>

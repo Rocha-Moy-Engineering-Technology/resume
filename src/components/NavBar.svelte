@@ -26,13 +26,11 @@
       class="flex min-w-0 flex-1 items-center lg:w-2/5 lg:flex-none lg:justify-center"
     >
       <span
-        class="text-ink font-display text-[0.95rem] leading-[1.15] font-semibold tracking-[-0.01em] sm:shrink-0 sm:text-2xl sm:leading-normal sm:whitespace-nowrap lg:text-[1.65rem]"
+        class="display text-ink text-[1.05rem] sm:shrink-0 sm:text-2xl sm:whitespace-nowrap lg:text-[1.6rem]"
         >{PROFILE.name}</span
       >
     </div>
-    <span
-      class="text-accent font-display hidden min-w-0 flex-1 text-right text-[1.05rem] leading-snug tracking-wide text-balance italic xl:block"
-    >
+    <span class="label hidden min-w-0 flex-1 text-right text-balance xl:block">
       {PROFILE.title}
     </span>
     <div class="flex shrink-0 items-center gap-0 pr-3 sm:gap-1 sm:pr-6">
@@ -41,7 +39,7 @@
         href="{import.meta.env.BASE_URL}resume.pdf"
         download={downloadFilename}
         aria-label="Download Resume"
-        class="tooltip text-ink-soft hover:bg-accent-soft hover:text-accent relative rounded-full p-1.5 transition-colors duration-200 sm:p-2"
+        class="tooltip icon-link relative p-1.5 sm:p-2"
       >
         <svg
           width="19"
@@ -62,7 +60,7 @@
           <polyline points="9 15 12 18 15 15" />
         </svg>
         <span
-          class="tooltip-text border-line bg-surface text-ink-soft pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded-lg border px-2.5 py-1 text-xs whitespace-nowrap opacity-0 shadow-sm transition-opacity duration-150"
+          class="tooltip-text label border-line bg-canvas pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 border px-2.5 py-1 whitespace-nowrap opacity-0 transition-opacity duration-150"
         >
           Download Resume PDF
         </span>
@@ -72,7 +70,7 @@
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub"
-        class="text-ink-soft hover:bg-accent-soft hover:text-accent rounded-full p-1.5 transition-colors duration-200 sm:p-2"
+        class="icon-link p-1.5 sm:p-2"
       >
         <svg
           width="19"
@@ -91,7 +89,7 @@
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        class="text-ink-soft hover:bg-accent-soft hover:text-accent rounded-full p-1.5 transition-colors duration-200 sm:p-2"
+        class="icon-link p-1.5 sm:p-2"
       >
         <svg
           width="19"
@@ -108,7 +106,7 @@
       <button
         type="button"
         onclick={oncontact}
-        class="bg-accent text-accent-contrast hover:bg-accent-strong ml-1 shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200 sm:ml-1.5 sm:px-5 sm:py-2 sm:text-sm"
+        class="chip ml-2 shrink-0 sm:ml-3"
       >
         Contact
       </button>

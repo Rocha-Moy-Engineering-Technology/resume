@@ -8,8 +8,8 @@
   import { validateFormData } from '../logic/validation';
 
   const FIELD_CLASS =
-    'w-full rounded-xl border border-line bg-canvas px-4 py-3 text-ink placeholder:text-ink-faint transition-colors duration-200 outline-none focus:border-accent';
-  const LABEL_CLASS = 'mb-2 block text-sm font-medium text-ink';
+    'w-full border border-line bg-canvas px-4 py-3 text-ink placeholder:text-ink-faint transition-colors duration-200 outline-none focus:border-ink';
+  const LABEL_CLASS = 'label mb-2 block';
 
   let formState = $state<FormState>(FormState.Idle);
   let formData = $state<FormData>({ ...EMPTY_FORM_DATA });
@@ -80,14 +80,14 @@
 </script>
 
 {#if formState === FormState.Success}
-  <div class="border-line bg-canvas rounded-xl border p-6 text-center">
-    <p class="text-success text-lg font-semibold">{submissionMessage}</p>
+  <div class="border-line bg-canvas border p-6 text-center">
+    <p class="text-success display text-lg">{submissionMessage}</p>
     <button
       type="button"
       onclick={() => {
         formState = FormState.Idle;
       }}
-      class="bg-accent text-accent-contrast hover:bg-accent-strong mt-5 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200"
+      class="chip mt-6"
     >
       Send another message
     </button>
@@ -153,11 +153,7 @@
       <p class="text-error text-sm">{submissionMessage}</p>
     {/if}
 
-    <button
-      type="submit"
-      disabled={isSubmitting}
-      class="bg-accent text-accent-contrast hover:bg-accent-strong w-full rounded-full px-6 py-3 font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50"
-    >
+    <button type="submit" disabled={isSubmitting} class="action w-full">
       {isSubmitting ? 'Sending...' : 'Send Message'}
     </button>
   </form>
