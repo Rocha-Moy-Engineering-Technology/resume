@@ -97,8 +97,10 @@ body {
 }
 
 /*
- * The shared vocabulary. These are the same classes the blog defines, so a
- * heading, a label or a chip is described the same way on both sites.
+ * The shared vocabulary. display, label, icon-link, entry, entry-title and
+ * chip are the same classes the blog defines, so a heading, a label or a chip
+ * is described the same way on both sites. action is site-local: the blog
+ * has no filled control.
  */
 @layer components {
   .display {

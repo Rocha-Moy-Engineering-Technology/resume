@@ -6,13 +6,11 @@ Personal resume website showcasing professional experience, portfolio projects, 
 
 ## Screenshots
 
-Captured from the production build; sources in `docs/screenshots/`.
+Captured from the production build; sources in `docs/png/screenshots/`, light theme first, dark theme second.
 
-| View          | Light                                                                   | Dark                                                                  |
-| ------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| Desktop       | ![Desktop, light theme](docs/screenshots/desktop-light.png)             | ![Desktop, dark theme](docs/screenshots/desktop-dark.png)             |
-| Mobile        | ![Mobile, light theme](docs/screenshots/mobile-light.png)               | ![Mobile, dark theme](docs/screenshots/mobile-dark.png)               |
-| Contact modal | ![Contact modal, light theme](docs/screenshots/contact-modal-light.png) | ![Contact modal, dark theme](docs/screenshots/contact-modal-dark.png) |
+- Desktop: ![Desktop, light theme](docs/png/screenshots/desktop-light.png) ![Desktop, dark theme](docs/png/screenshots/desktop-dark.png)
+- Mobile: ![Mobile, light theme](docs/png/screenshots/mobile-light.png) ![Mobile, dark theme](docs/png/screenshots/mobile-dark.png)
+- Contact modal: ![Contact modal, light theme](docs/png/screenshots/contact-modal-light.png) ![Contact modal, dark theme](docs/png/screenshots/contact-modal-dark.png)
 
 ## Design
 
@@ -21,8 +19,9 @@ The site shares its design system with the
 black ground, Barlow Condensed set in uppercase for display type, Barlow for
 body copy, hairline rules instead of filled cards, square corners, and no accent
 colour. The shared vocabulary lives in `src/app.css` as `display`, `label`,
-`icon-link`, `entry`, `entry-title`, `chip` and `action`; those class names mean
-the same thing on both sites.
+`icon-link`, `entry`, `entry-title` and `chip`; those class names mean the same
+thing on both sites. `action`, the filled primary control of the resume form,
+is this site's own and has no counterpart on the blog.
 
 ## Features
 
