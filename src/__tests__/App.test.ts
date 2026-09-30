@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
 import App from '../App.svelte';
+import { PROFILE } from '../types/resume';
 import { SystemScheme, Theme, ThemePreference } from '../types/theme';
 import { createFakeThemePort, type FakeThemePort } from './fakes/theme';
 
@@ -17,7 +18,7 @@ describe('App', () => {
   it('renders the name in the navbar', () => {
     renderApp();
     const nav = screen.getByRole('navigation');
-    expect(nav).toHaveTextContent(/Pedro Henrique Rocha Moy/i);
+    expect(nav).toHaveTextContent(PROFILE.name);
   });
 
   it('renders the resume section', () => {

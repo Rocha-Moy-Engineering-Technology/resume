@@ -1,12 +1,18 @@
 import { expect, test } from '@playwright/test';
+// Expected resume content comes from src/types/resume.ts, the data the page
+// renders, so editing the resume never means editing this spec. Entry text is
+// matched exactly: the default match ignores case and accepts a substring, so
+// a short title would also hit a longer title or a bullet that contains it.
+import {
+  EDUCATION_ENTRIES,
+  EXPERIENCE_ENTRIES,
+  PORTFOLIO_ENTRIES,
+  PROFILE,
+} from '../src/types/resume';
 
 // Vite is configured with base: '/resume/', so every asset and the document
 // itself are served under that prefix.
 const SITE_PATH = '/resume/';
-
-const PROFILE_NAME = 'Pedro Henrique Rocha Moy';
-const PROFILE_TITLE =
-  'Artificial Intelligence, Machine Learning, Data Science, Data & Software Engineering';
 
 test.describe('Contractor Site', () => {
   test.beforeEach(async ({ page }) => {
@@ -14,7 +20,7 @@ test.describe('Contractor Site', () => {
   });
 
   test('page loads with correct title', async ({ page }) => {
-    await expect(page).toHaveTitle(`${PROFILE_NAME} - ${PROFILE_TITLE}`);
+    await expect(page).toHaveTitle(`${PROFILE.name} - ${PROFILE.title}`);
   });
 
   test('navigation bar is visible with download and contact', async ({
@@ -22,7 +28,7 @@ test.describe('Contractor Site', () => {
   }) => {
     const nav = page.locator('nav');
     await expect(nav).toBeVisible();
-    await expect(nav.getByText(PROFILE_NAME)).toBeVisible();
+    await expect(nav.getByText(PROFILE.name)).toBeVisible();
     await expect(
       nav.getByRole('link', { name: /download resume/i })
     ).toBeVisible();
@@ -30,30 +36,27 @@ test.describe('Contractor Site', () => {
   });
 
   test('profile column displays the photo', async ({ page }) => {
-    await expect(page.getByAltText(PROFILE_NAME)).toBeVisible();
+    await expect(page.getByAltText(PROFILE.name)).toBeVisible();
   });
 
   test('navbar has social icon links', async ({ page }) => {
     const nav = page.locator('nav');
     const github = nav.getByRole('link', { name: /github/i });
     await expect(github).toBeVisible();
-    await expect(github).toHaveAttribute('href', 'https://github.com/phrmoy');
+    await expect(github).toHaveAttribute('href', PROFILE.github);
 
     const linkedin = nav.getByRole('link', { name: /linkedin/i });
     await expect(linkedin).toBeVisible();
-    await expect(linkedin).toHaveAttribute(
-      'href',
-      'https://www.linkedin.com/in/phrmoy/'
-    );
+    await expect(linkedin).toHaveAttribute('href', PROFILE.linkedin);
   });
 
   test('profile column has education entries', async ({ page }) => {
-    await expect(
-      page.getByText('Executive MBA in Business Administration')
-    ).toBeVisible();
-    await expect(
-      page.getByText('Georgia Institute of Technology')
-    ).toBeVisible();
+    for (const entry of EDUCATION_ENTRIES) {
+      await expect(page.getByText(entry.degree, { exact: true })).toBeVisible();
+      await expect(
+        page.getByText(entry.institution, { exact: true })
+      ).toBeVisible();
+    }
   });
 
   // The title is rendered twice -- in the navbar for >=xl and in the profile
@@ -61,7 +64,7 @@ test.describe('Contractor Site', () => {
   // copy must be visible at any viewport, so the text is never duplicated on
   // screen and never disappears entirely.
   test('professional title is visible exactly once', async ({ page }) => {
-    const copies = page.getByText(PROFILE_TITLE);
+    const copies = page.getByText(PROFILE.title);
     await expect(copies).toHaveCount(2);
     await expect(copies.filter({ visible: true })).toHaveCount(1);
   });
@@ -69,18 +72,23 @@ test.describe('Contractor Site', () => {
   test('resume section has experience entries', async ({ page }) => {
     const resume = page.locator('#resume');
     await expect(resume).toBeVisible();
-    await expect(resume.getByText('AI Advisor')).toBeVisible();
-    await expect(resume.getByText('AI Consultant')).toBeVisible();
-    await expect(resume.getByText('AI Software Developer')).toBeVisible();
+    for (const entry of EXPERIENCE_ENTRIES) {
+      await expect(
+        resume.getByText(entry.title, { exact: true })
+      ).toBeVisible();
+    }
   });
 
   test('resume section has portfolio entry', async ({ page }) => {
     const resume = page.locator('#resume');
-    const portfolioLink = resume.getByRole('link', {
-      name: 'Pastoral Conscience AI',
-    });
-    await expect(portfolioLink).toBeVisible();
-    await expect(portfolioLink).toHaveAttribute('target', '_blank');
+    for (const entry of PORTFOLIO_ENTRIES) {
+      const portfolioLink = resume.getByRole('link', {
+        name: entry.title,
+        exact: true,
+      });
+      await expect(portfolioLink).toBeVisible();
+      await expect(portfolioLink).toHaveAttribute('target', '_blank');
+    }
   });
 
   test('navbar download resume icon link has correct attributes', async ({
