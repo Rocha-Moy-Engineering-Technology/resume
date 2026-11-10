@@ -2,7 +2,7 @@
 
 Personal resume website showcasing professional experience, portfolio projects, and education.
 
-**Live:** https://rocha-moy-engineering-technology.github.io/resume
+**Live:** https://phrmoy.com
 
 ## Screenshots
 
@@ -41,7 +41,7 @@ is this site's own and has no counterpart on the blog.
 - **Testing:** Vitest (unit), Playwright (e2e). Set `PLAYWRIGHT_CHROMIUM_PATH`
   to run the end-to-end suite against a supplied Chromium, for example in a
   container with no downloadable browser; unset, it uses the usual one.
-- **Deployment:** GitHub Pages via GitHub Actions
+- **Deployment:** Cloudflare Pages (project `phrmoy`, custom domain phrmoy.com) via `npm run deploy`; GitHub Actions runs the gates on every push
 
 ## Development
 

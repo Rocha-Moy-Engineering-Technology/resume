@@ -10,9 +10,9 @@ import {
   PROFILE,
 } from '../src/types/resume';
 
-// Vite is configured with base: '/resume/', so every asset and the document
-// itself are served under that prefix.
-const SITE_PATH = '/resume/';
+// Vite is configured with base: '/', matching the site's home at the root of
+// phrmoy.com.
+const SITE_PATH = '/';
 
 test.describe('Contractor Site', () => {
   test.beforeEach(async ({ page }) => {
@@ -79,8 +79,18 @@ test.describe('Contractor Site', () => {
     }
   });
 
+  test('experience tab is selected on load', async ({ page }) => {
+    const tabs = page.locator('#resume').getByRole('tab');
+    await expect(tabs).toHaveText(['Experience', 'Portfolio']);
+    await expect(tabs.first()).toHaveAttribute('aria-selected', 'true');
+  });
+
   test('resume section has portfolio entry', async ({ page }) => {
     const resume = page.locator('#resume');
+    await resume.getByRole('tab', { name: 'Portfolio' }).click();
+    await expect(
+      resume.getByText(EXPERIENCE_ENTRIES[0].title, { exact: true })
+    ).toBeHidden();
     for (const entry of PORTFOLIO_ENTRIES) {
       const portfolioLink = resume.getByRole('link', {
         name: entry.title,
@@ -91,6 +101,28 @@ test.describe('Contractor Site', () => {
     }
   });
 
+  test('a #portfolio link opens the portfolio tab', async ({ page }) => {
+    await page.goto(`${SITE_PATH}#portfolio`);
+    const resume = page.locator('#resume');
+    await expect(
+      resume.getByRole('tab', { name: 'Portfolio' })
+    ).toHaveAttribute('aria-selected', 'true');
+    await expect(
+      resume.getByRole('link', {
+        name: PORTFOLIO_ENTRIES[0].title,
+        exact: true,
+      })
+    ).toBeVisible();
+  });
+
+  test('choosing a tab updates the address bar', async ({ page }) => {
+    await page
+      .locator('#resume')
+      .getByRole('tab', { name: 'Portfolio' })
+      .click();
+    await expect(page).toHaveURL(/#portfolio$/);
+  });
+
   test('navbar download resume icon link has correct attributes', async ({
     page,
   }) => {
@@ -99,7 +131,7 @@ test.describe('Contractor Site', () => {
       name: /download resume/i,
     });
     await expect(downloadLink).toBeVisible();
-    await expect(downloadLink).toHaveAttribute('href', '/resume/resume.pdf');
+    await expect(downloadLink).toHaveAttribute('href', '/resume.pdf');
     await expect(downloadLink).toHaveAttribute(
       'download',
       /^PHRMOY_RESUME_rev\d{8}\.pdf$/

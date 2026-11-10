@@ -35,7 +35,8 @@ function indexHtmlPlaceholders(): Plugin {
 }
 
 export default defineConfig({
-  base: '/resume/',
+  // Served from the root of phrmoy.com (Cloudflare Pages project phrmoy).
+  base: '/',
   plugins: [tailwindcss(), svelte(), indexHtmlPlaceholders()],
   resolve: {
     conditions: ['browser'],
