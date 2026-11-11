@@ -17,6 +17,8 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "validate": "npm run format && npm run check && npm run lint && npm run test && npm run build",
+    "validate:all": "npm run format:check && npm run check && npm run lint && npm run test && npm run test:e2e && npm run build",
+    "predeploy": "npm run validate:all",
     "deploy": "CLOUDFLARE_ACCOUNT_ID=5d7db68ad19e077dd3671d4f2a4466a9 wrangler pages deploy dist --project-name=phrmoy --branch=main"
   },
   "devDependencies": {

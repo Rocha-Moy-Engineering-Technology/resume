@@ -16,14 +16,16 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        // Containers without a downloadable browser point this at one they have.
+        // Validation runs locally (there is no CI), so the tests use the
+        // installed Google Chrome instead of a Playwright browser download.
+        // Machines without Chrome point PLAYWRIGHT_CHROMIUM_PATH at a browser.
         ...(process.env.PLAYWRIGHT_CHROMIUM_PATH
           ? {
               launchOptions: {
                 executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH,
               },
             }
-          : {}),
+          : { channel: 'chrome' }),
       },
     },
   ],
