@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 // Expected resume content comes from src/types/resume.ts, the data the page
 // renders, so editing the resume never means editing this spec. Entry text is
 // matched exactly: the default match ignores case and accepts a substring, so
@@ -140,7 +140,7 @@ test.describe('Contractor Site', () => {
 
   test('contact modal opens and closes', async ({ page }) => {
     await page.getByRole('button', { name: /contact/i }).click();
-    const dialog = page.locator('[role="dialog"]');
+    const dialog = page.getByRole('dialog');
     await expect(dialog).toBeVisible();
     await expect(dialog.getByText('Get in Touch')).toBeVisible();
     await expect(dialog.getByLabel(/name/i)).toBeVisible();
@@ -151,7 +151,7 @@ test.describe('Contractor Site', () => {
 
   test('contact modal closes on X button', async ({ page }) => {
     await page.getByRole('button', { name: /contact/i }).click();
-    const dialog = page.locator('[role="dialog"]');
+    const dialog = page.getByRole('dialog');
     await expect(dialog).toBeVisible();
 
     await page.getByRole('button', { name: /close contact form/i }).click();

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { themeToggleLabel } from '../logic/theme';
-  import { Theme } from '../types/theme';
+  import { themeToggleLabel } from '../../../logic/theme';
+  import { Theme } from '../../../types/theme';
 
   interface Props {
     theme: Theme;

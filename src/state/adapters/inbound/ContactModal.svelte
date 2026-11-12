@@ -1,41 +1,38 @@
 <script lang="ts">
-  import { ModalState } from '../types/modal';
+  import { ModalState } from '../../../types/modal';
   import ContactForm from './ContactForm.svelte';
+  import type { ContactPort } from '../../../types/ports/contact';
+  import type { ModalPort } from '../../../types/ports/modal';
 
   interface Props {
     state: ModalState;
     onclose: () => void;
+    contactPort: ContactPort;
+    modalPort: ModalPort;
   }
 
-  let { state, onclose }: Props = $props();
+  let { state, onclose, contactPort, modalPort }: Props = $props();
 
   function handleBackdropClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
       onclose();
     }
   }
-
-  function handleKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
-      onclose();
-    }
-  }
 </script>
 
-<svelte:window onkeydown={handleKeydown} />
-
 {#if state === ModalState.Open}
-  <!-- svelte-ignore a11y_click_events_have_key_events -->
-  <div
-    class="bg-backdrop modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-    role="dialog"
-    tabindex="-1"
-    aria-modal="true"
+  <dialog
+    use:modalPort.activate
+    class="modal-backdrop text-ink fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto border-0 bg-transparent p-0"
     aria-label="Contact form"
     onclick={handleBackdropClick}
+    oncancel={(event) => {
+      event.preventDefault();
+      onclose();
+    }}
   >
     <div
-      class="border-line bg-canvas modal-panel relative w-full max-w-lg border p-7 sm:p-9"
+      class="border-line bg-canvas modal-panel relative w-full border p-7 sm:p-9"
     >
       <button
         type="button"
@@ -60,9 +57,9 @@
       <p class="label">Contact</p>
       <h2 class="display text-ink mt-3 mb-8 text-[1.75rem]">Get in Touch</h2>
 
-      <ContactForm />
+      <ContactForm port={contactPort} />
     </div>
-  </div>
+  </dialog>
 {/if}
 
 <style>
@@ -72,6 +69,11 @@
 
   .modal-panel {
     animation: panel-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  dialog::backdrop {
+    background: var(--color-backdrop);
+    backdrop-filter: blur(4px);
   }
 
   @keyframes fade-in {

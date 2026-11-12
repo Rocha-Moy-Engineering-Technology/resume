@@ -1,6 +1,6 @@
 <script lang="ts">
-  import profilePortrait from '../assets/profile.webp';
-  import { EDUCATION_ENTRIES, PROFILE } from '../types/resume';
+  import profilePortrait from '../../../assets/profile.webp';
+  import { EDUCATION_ENTRIES, PROFILE } from '../../../types/resume';
 </script>
 
 <aside

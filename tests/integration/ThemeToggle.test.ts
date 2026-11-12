@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import { describe, expect, it, vi } from 'vitest';
-import ThemeToggle from '../components/ThemeToggle.svelte';
-import { Theme } from '../types/theme';
+import ThemeToggle from '../../src/state/adapters/inbound/ThemeToggle.svelte';
+import { Theme } from '../../src/types/theme';
 
 describe('ThemeToggle', () => {
   it('offers to switch to light while dark is showing', () => {

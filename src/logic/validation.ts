@@ -1,19 +1,19 @@
 import type { FormData, ValidationResult } from '../types/contact';
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const WHITESPACE = /\s/;
 
 export function validateEmail(config: { email: string }): boolean {
-  return EMAIL_REGEX.test(config.email);
+  const email = config.email;
+  const separator = email.indexOf('@');
+  if (separator <= 0 || email.lastIndexOf('@') !== separator) return false;
+  const domain = email.slice(separator + 1);
+  const dot = domain.lastIndexOf('.');
+  return dot > 0 && dot < domain.length - 1 && !WHITESPACE.test(email);
 }
 
 export function validateFormData(formData: FormData): ValidationResult {
   const nameError = formData.name.trim() === '' ? 'Name is required' : '';
-  const emailError =
-    formData.email.trim() === ''
-      ? 'Email is required'
-      : validateEmail({ email: formData.email })
-        ? ''
-        : 'Please enter a valid email address';
+  const emailError = validateEmailField(formData.email);
   const messageError =
     formData.message.trim() === '' ? 'Message is required' : '';
 
@@ -25,4 +25,9 @@ export function validateFormData(formData: FormData): ValidationResult {
       message: messageError,
     },
   };
+}
+
+function validateEmailField(email: string): string {
+  if (email.trim() === '') return 'Email is required';
+  return validateEmail({ email }) ? '' : 'Please enter a valid email address';
 }

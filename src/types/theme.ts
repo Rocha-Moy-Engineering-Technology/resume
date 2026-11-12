@@ -14,6 +14,13 @@ export enum SystemScheme {
   Dark = 'dark',
 }
 
+export interface ThemeController {
+  readonly theme: Theme;
+  readonly preference: ThemePreference;
+  toggle(): void;
+  destroy(): void;
+}
+
 /**
  * Single source of truth for the theme wiring. The pre-paint bootstrap snippet
  * in index.html is injected with these values by vite.config.ts, so the browser

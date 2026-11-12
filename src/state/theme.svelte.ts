@@ -1,13 +1,11 @@
 import { nextPreference, resolveTheme } from '../logic/theme';
 import type { ThemePort } from '../types/ports/theme';
-import type { SystemScheme, Theme, ThemePreference } from '../types/theme';
-
-export interface ThemeController {
-  readonly theme: Theme;
-  readonly preference: ThemePreference;
-  toggle(): void;
-  destroy(): void;
-}
+import type {
+  SystemScheme,
+  Theme,
+  ThemePreference,
+  ThemeController,
+} from '../types/theme';
 
 /**
  * Sole owner of the mutable theme state. Every mutation happens in this file;

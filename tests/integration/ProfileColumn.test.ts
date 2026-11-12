@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import ProfileColumn from '../components/ProfileColumn.svelte';
-import { PROFILE, EDUCATION_ENTRIES } from '../types/resume';
+import ProfileColumn from '../../src/state/adapters/inbound/ProfileColumn.svelte';
+import { PROFILE, EDUCATION_ENTRIES } from '../../src/types/resume';
 
 describe('ProfileColumn', () => {
   it('renders the profile image', () => {

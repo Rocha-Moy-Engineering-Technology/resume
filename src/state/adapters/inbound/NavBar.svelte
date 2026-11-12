@@ -1,39 +1,36 @@
 <script lang="ts">
   import ThemeToggle from './ThemeToggle.svelte';
-  import { PROFILE } from '../types/resume';
-  import type { Theme } from '../types/theme';
+  import { PROFILE } from '../../../types/resume';
+  import type { Theme } from '../../../types/theme';
 
   interface Props {
     theme: Theme;
     onthemetoggle: () => void;
     oncontact: () => void;
+    downloadFilename: string;
   }
 
-  let { theme, onthemetoggle, oncontact }: Props = $props();
-
-  const now = new Date();
-  const rev = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
-  const downloadFilename = `PHRMOY_RESUME_rev${rev}.pdf`;
+  let { theme, onthemetoggle, oncontact, downloadFilename }: Props = $props();
 </script>
 
 <nav
   class="border-line bg-canvas-veil sticky top-0 z-40 border-b backdrop-blur-xl"
 >
   <div
-    class="flex items-center justify-between gap-3 py-3 pl-4 sm:gap-4 sm:pl-6 lg:gap-8 lg:pl-0"
+    class="flex flex-wrap items-center justify-between gap-3 py-3 pl-4 sm:flex-nowrap sm:gap-4 sm:pl-6 lg:gap-8 lg:pl-0"
   >
     <div
-      class="flex min-w-0 flex-1 items-center lg:w-2/5 lg:flex-none lg:justify-center"
+      class="flex w-full min-w-0 items-center pr-4 sm:w-auto sm:flex-1 sm:pr-0 lg:w-2/5 lg:flex-none lg:justify-center"
     >
       <span
-        class="display text-ink text-[0.95rem] sm:shrink-0 sm:text-2xl sm:whitespace-nowrap lg:text-[1.6rem]"
+        class="display text-ink min-w-0 text-[0.95rem] sm:text-2xl lg:text-[1.6rem]"
         >{PROFILE.name}</span
       >
     </div>
     <span class="label hidden min-w-0 flex-1 text-right text-balance xl:block">
       {PROFILE.title}
     </span>
-    <div class="flex shrink-0 items-center gap-0 pr-3 sm:gap-1 sm:pr-6">
+    <div class="ml-auto flex shrink-0 items-center gap-0 pr-3 sm:gap-1 sm:pr-6">
       <ThemeToggle {theme} ontoggle={onthemetoggle} />
       <a
         href="{import.meta.env.BASE_URL}resume.pdf"

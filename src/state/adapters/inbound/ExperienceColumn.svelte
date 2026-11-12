@@ -1,55 +1,27 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { nextTabIndex, tabFromHash } from '../logic/tabs';
-  import { RESUME_TABS, ResumeTab, SectionId } from '../types/navigation';
+  import { onDestroy } from 'svelte';
+  import { createNavigationController } from '../../navigation.svelte';
+  import type { NavigationPort } from '../../../types/ports/navigation';
+  import { RESUME_TABS, ResumeTab, SectionId } from '../../../types/navigation';
   import {
     PROFILE,
     EXPERIENCE_ENTRIES,
     PORTFOLIO_ENTRIES,
-  } from '../types/resume';
+  } from '../../../types/resume';
 
-  const currentYear = new Date().getFullYear();
-
-  const TAB_IDS = RESUME_TABS.map((tab) => tab.id);
-
-  let activeTab = $state<ResumeTab>(ResumeTab.Experience);
-  let tabButtons = $state<HTMLButtonElement[]>([]);
-  let columnStart = $state<HTMLElement>();
-
-  // `#experience` and `#portfolio` open the matching tab, so either can be
-  // linked to directly; choosing a tab writes its fragment back to the URL.
-  function showTabFromHash(): void {
-    const tab = tabFromHash(window.location.hash, TAB_IDS);
-    if (tab) activeTab = tab;
+  interface Props {
+    currentYear: number;
+    port: NavigationPort;
   }
-
-  onMount(() => {
-    showTabFromHash();
-    window.addEventListener('hashchange', showTabFromHash);
-    return () => window.removeEventListener('hashchange', showTabFromHash);
-  });
-
-  function selectTab(tab: ResumeTab): void {
-    if (tab === activeTab) return;
-    activeTab = tab;
-    // replaceState, not location.hash: it neither scrolls nor adds a history
-    // entry per click.
-    history.replaceState(history.state, '', `#${tab}`);
-    // A reader deep in the long Experience list would otherwise land midway
-    // down (or past the end of) the shorter panel; bring them back to its top.
-    if (!columnStart) return;
-    const margin = parseFloat(getComputedStyle(columnStart).scrollMarginTop);
-    if (columnStart.getBoundingClientRect().top < (margin || 0)) {
-      columnStart.scrollIntoView({ block: 'start', behavior: 'instant' });
-    }
-  }
+  let { currentYear, port }: Props = $props();
+  // The navigation dependency lasts for this mounted column.
+  // svelte-ignore state_referenced_locally
+  const controller = createNavigationController(port);
+  const activeTab = $derived(controller.activeTab);
+  onDestroy(controller.destroy);
 
   function onTabKeydown(event: KeyboardEvent, index: number): void {
-    const next = nextTabIndex(index, event.key, RESUME_TABS.length);
-    if (next === null) return;
-    event.preventDefault();
-    selectTab(RESUME_TABS[next].id);
-    tabButtons[next]?.focus();
+    if (controller.key(event.key, index)) event.preventDefault();
   }
 </script>
 
@@ -57,7 +29,7 @@
   <div
     class="mx-auto max-w-[46rem] px-6 py-12 sm:px-8 lg:px-10 lg:py-12 xl:px-14 xl:py-14"
   >
-    <div bind:this={columnStart} class="scroll-mt-[3.75rem]"></div>
+    <div use:port.registerStart class="scroll-mt-[3.75rem]"></div>
 
     <!--
       The tablist's hairline opens each panel, so a panel's first entry drops
@@ -71,22 +43,22 @@
       <div
         role="tablist"
         aria-label="Resume sections"
-        class="border-line flex items-end gap-8 border-b sm:gap-10"
+        class="border-line flex items-end gap-5 border-b sm:gap-10"
       >
         {#each RESUME_TABS as tab, i (tab.id)}
           {@const selected = activeTab === tab.id}
           <button
-            bind:this={tabButtons[i]}
+            use:port.registerTab={i}
             type="button"
             role="tab"
             id="tab-{tab.id}"
             aria-selected={selected}
             aria-controls="panel-{tab.id}"
             tabindex={selected ? 0 : -1}
-            onclick={() => selectTab(tab.id)}
+            onclick={() => controller.select(tab.id)}
             onkeydown={(event) => onTabKeydown(event, i)}
             class={[
-              'display relative cursor-pointer pb-3 text-[1.5rem] transition-colors duration-150 sm:text-[2.125rem]',
+              'display relative cursor-pointer pb-3 text-[1.25rem] transition-colors duration-150 sm:text-[2.125rem]',
               selected ? 'text-ink' : 'text-ink-faint hover:text-ink-soft',
             ]}
           >

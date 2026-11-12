@@ -1,12 +1,33 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import App from '../App.svelte';
-import { PROFILE } from '../types/resume';
-import { SystemScheme, Theme, ThemePreference } from '../types/theme';
-import { createFakeThemePort, type FakeThemePort } from './fakes/theme';
+import App from '../../src/state/adapters/inbound/App.svelte';
+import { PROFILE } from '../../src/types/resume';
+import { SystemScheme, Theme, ThemePreference } from '../../src/types/theme';
+import {
+  createFakeThemePort,
+  type FakeThemePort,
+} from '../../src/__tests__/fakes/theme';
+import { FakeContactPort } from '../../src/__tests__/fakes/contact';
+import { createFakeModalPort } from '../../src/__tests__/fakes/modal';
+import { createFakeNavigationPort } from '../../src/__tests__/fakes/navigation';
+
+const browserDependencies = () => ({
+  clockPort: { readDate: () => ({ year: 2026, month: 1, day: 2 }) },
+  navigationPort: createFakeNavigationPort(),
+});
 
 function renderApp(port: FakeThemePort = createFakeThemePort()) {
-  return { port, ...render(App, { props: { themePort: port } }) };
+  return {
+    port,
+    ...render(App, {
+      props: {
+        themePort: port,
+        contactPort: new FakeContactPort(),
+        modalPort: createFakeModalPort(),
+        ...browserDependencies(),
+      },
+    }),
+  };
 }
 
 describe('App', () => {
@@ -76,7 +97,14 @@ describe('App', () => {
 
   it('stops listening to the operating system when unmounted', () => {
     const port = createFakeThemePort();
-    const { unmount } = render(App, { props: { themePort: port } });
+    const { unmount } = render(App, {
+      props: {
+        themePort: port,
+        contactPort: new FakeContactPort(),
+        modalPort: createFakeModalPort(),
+        ...browserDependencies(),
+      },
+    });
     expect(port.listenerCount).toBe(1);
 
     unmount();

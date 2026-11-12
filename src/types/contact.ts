@@ -24,6 +24,19 @@ export interface ValidationResult {
   readonly errors: FormErrors;
 }
 
+export interface ContactController {
+  readonly state: FormState;
+  readonly data: FormData;
+  readonly errors: FormErrors;
+  readonly message: string;
+  input(field: keyof FormData, value: string): void;
+  submit(): void;
+  reset(): void;
+  destroy(): void;
+}
+
+export const CONTACT_REQUEST_TIMEOUT_MS = 15000;
+
 export const EMPTY_FORM_DATA: FormData = {
   name: '',
   email: '',

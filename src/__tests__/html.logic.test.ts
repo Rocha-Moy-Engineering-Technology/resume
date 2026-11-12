@@ -2,6 +2,12 @@ import { describe, expect, it } from 'vitest';
 import { escapeHtmlText, fillPlaceholders } from '../logic/html';
 
 describe('escapeHtmlText', () => {
+  it('handles large mixed input in linear work without losing Unicode or punctuation', () => {
+    const input = 'é<&>"\' '.repeat(20000);
+    const started = performance.now();
+    expect(escapeHtmlText(input)).toBe('é&lt;&amp;&gt;"\' '.repeat(20000));
+    expect(performance.now() - started).toBeLessThan(1000);
+  });
   it('escapes the characters that open markup or an entity', () => {
     expect(escapeHtmlText('Data & Software <Engineering>')).toBe(
       'Data &amp; Software &lt;Engineering&gt;'

@@ -1,5 +1,17 @@
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { afterEach, beforeEach, expect, vi } from 'vitest';
+
+const started = new Map<string, number>();
+beforeEach((context) => {
+  started.set(context.task.id, performance.now());
+});
+afterEach((context) => {
+  const elapsed = performance.now() - started.get(context.task.id)!;
+  started.delete(context.task.id);
+  expect(elapsed, 'each unit case must finish within 5 seconds').toBeLessThan(
+    5000
+  );
+});
 
 // Mock fetch globally
 global.fetch = vi.fn();

@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import { describe, expect, it, vi } from 'vitest';
-import NavBar from '../components/NavBar.svelte';
-import { PROFILE } from '../types/resume';
-import { Theme } from '../types/theme';
+import NavBar from '../../src/state/adapters/inbound/NavBar.svelte';
+import { PROFILE } from '../../src/types/resume';
+import { Theme } from '../../src/types/theme';
 
 describe('NavBar', () => {
   const mockOnContact = vi.fn();
@@ -11,6 +11,7 @@ describe('NavBar', () => {
     theme: Theme.Dark,
     onthemetoggle: mockOnThemeToggle,
     oncontact: mockOnContact,
+    downloadFilename: 'PHRMOY_RESUME_rev20260102.pdf',
   };
 
   it('renders a nav element', () => {

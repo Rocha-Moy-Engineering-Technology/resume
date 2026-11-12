@@ -3,6 +3,41 @@ import { validateEmail, validateFormData } from '../logic/validation';
 import type { FormData } from '../types/contact';
 
 describe('validateEmail', () => {
+  it.each([
+    ' ',
+    '\t',
+    '\n',
+    '\r',
+    '\f',
+    '\v',
+    '\u00a0',
+    '\u2028',
+    '\u2029',
+    '\ufeff',
+  ])('rejects whitespace %j anywhere in the address', (space) => {
+    expect(validateEmail({ email: `user${space}@example.com` })).toBe(false);
+    expect(validateEmail({ email: `user@example.${space}com` })).toBe(false);
+    expect(validateEmail({ email: `${space}user@example.com` })).toBe(false);
+    expect(validateEmail({ email: `user@example.com${space}` })).toBe(false);
+  });
+
+  it.each([
+    'user@example.',
+    'user@.com',
+    'user@example..',
+    '@',
+    'user@@example.com',
+  ])('rejects invalid delimiter boundaries %s', (email) =>
+    expect(validateEmail({ email })).toBe(false)
+  );
+
+  it('rejects large adversarial input without quadratic backtracking', () => {
+    const input = `u@${'a.'.repeat(20000)} `;
+    const start = performance.now();
+    expect(validateEmail({ email: input })).toBe(false);
+    expect(performance.now() - start).toBeLessThan(100);
+    expect(validateEmail({ email: `u@${'a'.repeat(200000)}.com` })).toBe(true);
+  });
   it('returns true for a valid email', () => {
     expect(validateEmail({ email: 'user@example.com' })).toBe(true);
   });

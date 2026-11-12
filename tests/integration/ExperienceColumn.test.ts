@@ -1,11 +1,20 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
-import { afterEach, describe, expect, it } from 'vitest';
-import ExperienceColumn from '../components/ExperienceColumn.svelte';
+import { describe, expect, it } from 'vitest';
+import ExperienceColumn from '../../src/state/adapters/inbound/ExperienceColumn.svelte';
 import {
   PROFILE,
   EXPERIENCE_ENTRIES,
   PORTFOLIO_ENTRIES,
-} from '../types/resume';
+} from '../../src/types/resume';
+import { createFakeNavigationPort } from '../../src/__tests__/fakes/navigation';
+
+function renderColumn(hash = '') {
+  const port = createFakeNavigationPort(hash);
+  return {
+    port,
+    ...render(ExperienceColumn, { props: { currentYear: 2026, port } }),
+  };
+}
 
 function experienceTab(): HTMLElement {
   return screen.getByRole('tab', { name: 'Experience' });
@@ -16,17 +25,13 @@ function portfolioTab(): HTMLElement {
 }
 
 describe('ExperienceColumn', () => {
-  afterEach(() => {
-    history.replaceState(null, '', window.location.pathname);
-  });
-
   it('renders the resume section with correct id', () => {
-    const { container } = render(ExperienceColumn);
+    const { container } = renderColumn();
     expect(container.querySelector('#resume')).toBeInTheDocument();
   });
 
   it('renders Experience then Portfolio as tabs', () => {
-    render(ExperienceColumn);
+    renderColumn();
     const tabs = screen.getAllByRole('tab');
     expect(tabs.map((tab) => tab.textContent?.trim())).toEqual([
       'Experience',
@@ -36,7 +41,7 @@ describe('ExperienceColumn', () => {
   });
 
   it('selects the Experience tab by default', () => {
-    render(ExperienceColumn);
+    renderColumn();
     expect(experienceTab()).toHaveAttribute('aria-selected', 'true');
     expect(experienceTab()).toHaveAttribute('tabindex', '0');
     expect(portfolioTab()).toHaveAttribute('aria-selected', 'false');
@@ -50,7 +55,7 @@ describe('ExperienceColumn', () => {
   });
 
   it('wires each tab to its panel', () => {
-    render(ExperienceColumn);
+    renderColumn();
     for (const tab of screen.getAllByRole('tab', { hidden: true })) {
       const panel = document.getElementById(
         tab.getAttribute('aria-controls') ?? ''
@@ -61,21 +66,21 @@ describe('ExperienceColumn', () => {
   });
 
   it('renders all experience entry titles', () => {
-    render(ExperienceColumn);
+    renderColumn();
     for (const entry of EXPERIENCE_ENTRIES) {
       expect(screen.getByText(entry.title)).toBeVisible();
     }
   });
 
   it('renders experience companies', () => {
-    render(ExperienceColumn);
+    renderColumn();
     for (const entry of EXPERIENCE_ENTRIES) {
       expect(screen.getAllByText(entry.company).length).toBeGreaterThan(0);
     }
   });
 
   it('renders experience date ranges', () => {
-    render(ExperienceColumn);
+    renderColumn();
     const uniqueDates = [...new Set(EXPERIENCE_ENTRIES.map((e) => e.dates))];
     for (const dates of uniqueDates) {
       expect(screen.getAllByText(dates).length).toBeGreaterThan(0);
@@ -83,7 +88,7 @@ describe('ExperienceColumn', () => {
   });
 
   it('renders the technology tags of every entry', () => {
-    render(ExperienceColumn);
+    renderColumn();
     for (const entry of EXPERIENCE_ENTRIES) {
       for (const technology of entry.technologies) {
         expect(screen.getAllByText(technology).length).toBeGreaterThan(0);
@@ -92,14 +97,14 @@ describe('ExperienceColumn', () => {
   });
 
   it('hides the portfolio until its tab is chosen', () => {
-    render(ExperienceColumn);
+    renderColumn();
     expect(
       screen.queryByRole('link', { name: PORTFOLIO_ENTRIES[0].title })
     ).not.toBeInTheDocument();
   });
 
   it('shows the portfolio and hides experience on clicking Portfolio', async () => {
-    render(ExperienceColumn);
+    renderColumn();
     await fireEvent.click(portfolioTab());
 
     expect(portfolioTab()).toHaveAttribute('aria-selected', 'true');
@@ -113,7 +118,7 @@ describe('ExperienceColumn', () => {
   });
 
   it('returns to experience on clicking Experience', async () => {
-    render(ExperienceColumn);
+    renderColumn();
     await fireEvent.click(portfolioTab());
     await fireEvent.click(experienceTab());
 
@@ -122,7 +127,7 @@ describe('ExperienceColumn', () => {
   });
 
   it('moves selection and focus with the arrow keys', async () => {
-    render(ExperienceColumn);
+    renderColumn();
     await fireEvent.keyDown(experienceTab(), { key: 'ArrowRight' });
     expect(portfolioTab()).toHaveAttribute('aria-selected', 'true');
     expect(portfolioTab()).toHaveFocus();
@@ -133,35 +138,33 @@ describe('ExperienceColumn', () => {
   });
 
   it('opens the tab named in the URL fragment', () => {
-    history.replaceState(null, '', '#portfolio');
-    render(ExperienceColumn);
+    renderColumn('#portfolio');
     expect(portfolioTab()).toHaveAttribute('aria-selected', 'true');
   });
 
   it('ignores a fragment that names no tab', () => {
-    history.replaceState(null, '', '#contact');
-    render(ExperienceColumn);
+    renderColumn('#contact');
     expect(experienceTab()).toHaveAttribute('aria-selected', 'true');
   });
 
   it('follows the fragment when it changes', async () => {
-    render(ExperienceColumn);
-    history.replaceState(null, '', '#portfolio');
-    await fireEvent(window, new HashChangeEvent('hashchange'));
+    const { port } = renderColumn();
+    port.changeHash('#portfolio');
+    await Promise.resolve();
     expect(portfolioTab()).toHaveAttribute('aria-selected', 'true');
   });
 
   it('writes the chosen tab to the URL fragment', async () => {
-    render(ExperienceColumn);
+    const { port } = renderColumn();
     await fireEvent.click(portfolioTab());
-    expect(window.location.hash).toBe('#portfolio');
+    expect(port.readHash()).toBe('#portfolio');
     await fireEvent.click(experienceTab());
-    expect(window.location.hash).toBe('#experience');
+    expect(port.readHash()).toBe('#experience');
   });
 
   it('renders copyright text', () => {
-    render(ExperienceColumn);
-    const year = new Date().getFullYear();
+    renderColumn();
+    const year = 2026;
     expect(screen.getByText(`© ${year} ${PROFILE.name}`)).toBeInTheDocument();
   });
 });

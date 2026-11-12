@@ -26,6 +26,25 @@ describe('nextTabIndex', () => {
 describe('tabFromHash', () => {
   const tabs = ['experience', 'portfolio'] as const;
 
+  it('removes only a leading hash and rejects whitespace or special-character boundaries', () => {
+    for (const hash of [
+      '##portfolio',
+      ' portfolio',
+      '#portfolio ',
+      '#port#folio',
+      '#portfolio?',
+      '#portfolio/',
+    ]) {
+      expect(tabFromHash(hash, tabs)).toBeNull();
+    }
+  });
+
+  it('rejects a large unknown fragment within bounded linear work', () => {
+    const started = performance.now();
+    expect(tabFromHash(`${'#'.repeat(200000)}portfolio`, tabs)).toBeNull();
+    expect(performance.now() - started).toBeLessThan(1000);
+  });
+
   it('returns the tab a fragment names', () => {
     expect(tabFromHash('#portfolio', tabs)).toBe('portfolio');
     expect(tabFromHash('#experience', tabs)).toBe('experience');

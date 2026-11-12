@@ -45,8 +45,26 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,ts}'],
     environment: 'jsdom',
     globals: true,
+    testTimeout: 5000,
     setupFiles: ['./src/__tests__/setup.ts'],
     coverage: {
+      include: ['src/logic/**/*.ts', 'src/state/*.ts'],
+      thresholds: {
+        'src/logic/**': {
+          statements: 100,
+          branches: 100,
+          functions: 100,
+          lines: 100,
+          perFile: true,
+        },
+        'src/state/*.ts': {
+          statements: 100,
+          branches: 100,
+          functions: 100,
+          lines: 100,
+          perFile: true,
+        },
+      },
       // Ports, adapters and static assets are covered by integration and
       // end-to-end tests, not by the unit suite.
       exclude: [

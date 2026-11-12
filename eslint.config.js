@@ -24,6 +24,14 @@ export default ts.config(
     },
   },
   {
+    files: [
+      'src/logic/**/*.ts',
+      'src/state/**/*.ts',
+      'src/state/adapters/inbound/**/*.svelte',
+    ],
+    rules: { complexity: ['error', 6] },
+  },
+  {
     ignores: ['build/', 'dist/', 'node_modules/', 'coverage/'],
   }
 );
