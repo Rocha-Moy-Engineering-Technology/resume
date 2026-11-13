@@ -41,7 +41,7 @@ is this site's own and has no counterpart on the blog.
 - **Framework:** Svelte 5 + Vite
 - **Styling:** Tailwind CSS v4
 - **Testing:** Vitest units and headless Playwright integration/end-to-end tests, followed by the separate ordered browser smoke project. Set `PLAYWRIGHT_CHROMIUM_PATH` when the installed Google Chrome is unavailable.
-- **Deployment:** Cloudflare Pages (project `phrmoy`, custom domain phrmoy.com) via `npm run deploy`, which first runs every check (`npm run validate:all`); there is no Continuous Integration (CI)
+- **Deployment:** Cloudflare Pages (project `phrmoy`, custom domain phrmoy.com) via `./sh/deploy.sh site` from the agent root, which uploads the build that `./sh/build.sh site` saved and runs no build or test; run `npm run validate:all` before preparing a release, because there is no Continuous Integration (CI)
 
 ## Development
 
@@ -51,7 +51,7 @@ npm run dev        # Start dev server
 npm run build      # Production build
 npm run test       # Run unit tests
 npm run test:e2e   # Run headless end-to-end and ordered smoke tests
-npm run validate:all # Check formatting, types, lint, units, headless browsers, and build
+npm run validate:all # Check formatting, types, lint, units with coverage, headless browsers, and build
 ```
 
 ## Links
