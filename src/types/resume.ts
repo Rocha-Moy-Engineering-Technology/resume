@@ -308,6 +308,12 @@ export const PORTFOLIO_ENTRIES: readonly PortfolioEntry[] = [
     description:
       'Built an "Artificial Conscience" AI system that generates scripture-grounded spiritual reflections using RAG over the Psalms and DSPy-based conscience checkers. Governed reasoning pipeline with three verification layers — Helpfulness, Psalm Grounding, and Citation Integrity — where every response is scored, verified, and corrected before delivery. Architecture: Go backend with hexagonal architecture, Gemini File Search API as the retrieval layer, Python and DSPy services for conscience checkers with model fallback, Next.js frontend with real-time SSE progress updates, and PostgreSQL for data persistence.',
   },
+  {
+    title: 'Cecilia',
+    url: 'https://mariacecilia.app',
+    description:
+      'Built Cecilia, a cycle-awareness app for women trying to conceive or planning their family through fertility-awareness methods, released in open test on iPhone, Android, and the web in English, Spanish, and Brazilian Portuguese. Implemented two forecasting methods: a Calendar method that estimates the fertile window from cycle history, and a Symptothermal method that combines cycle timing with basal body temperature and cervical mucus signs, confirming the post-ovulation phase only after both rules are met. Users log periods, temperature, cervical mucus, ovulation tests, and notes, and see daily fertility status, a calendar of recorded and predicted days, and a temperature chart with coverline. Architecture: Go API with PostgreSQL, WorkOS authentication, a Flutter and Riverpod client for iOS, Android, macOS, and web, Railway Serverless hosting, and a static multilingual Astro website on Cloudflare Pages.',
+  },
 ] as const;
 
 export const EDUCATION_ENTRIES: readonly EducationEntry[] = [
