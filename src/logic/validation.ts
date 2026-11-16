@@ -1,4 +1,5 @@
 import type { FormData, ValidationResult } from '../types/contact';
+import { COPY, type ValidationCopy } from '../types/language';
 
 const WHITESPACE = /\s/;
 
@@ -11,11 +12,14 @@ export function validateEmail(config: { email: string }): boolean {
   return dot > 0 && dot < domain.length - 1 && !WHITESPACE.test(email);
 }
 
-export function validateFormData(formData: FormData): ValidationResult {
-  const nameError = formData.name.trim() === '' ? 'Name is required' : '';
-  const emailError = validateEmailField(formData.email);
+export function validateFormData(
+  formData: FormData,
+  copy: ValidationCopy = COPY.en.contact.validation
+): ValidationResult {
+  const nameError = formData.name.trim() === '' ? copy.nameRequired : '';
+  const emailError = validateEmailField(formData.email, copy);
   const messageError =
-    formData.message.trim() === '' ? 'Message is required' : '';
+    formData.message.trim() === '' ? copy.messageRequired : '';
 
   return {
     isValid: nameError === '' && emailError === '' && messageError === '',
@@ -27,7 +31,7 @@ export function validateFormData(formData: FormData): ValidationResult {
   };
 }
 
-function validateEmailField(email: string): string {
-  if (email.trim() === '') return 'Email is required';
-  return validateEmail({ email }) ? '' : 'Please enter a valid email address';
+function validateEmailField(email: string, copy: ValidationCopy): string {
+  if (email.trim() === '') return copy.emailRequired;
+  return validateEmail({ email }) ? '' : copy.emailInvalid;
 }

@@ -1,6 +1,9 @@
 <script lang="ts">
   import profilePortrait from '../../../assets/profile.webp';
-  import { EDUCATION_ENTRIES, PROFILE } from '../../../types/resume';
+  import { RESUMES } from '../../../types/resume';
+  import { COPY, type ResumeLanguage } from '../../../types/language';
+  let { language = 'en' }: { language?: ResumeLanguage } = $props();
+  const resume = $derived(RESUMES[language]);
 </script>
 
 <aside
@@ -21,7 +24,7 @@
       >
         <img
           src={profilePortrait}
-          alt={PROFILE.name}
+          alt={resume.profile.name}
           width="720"
           height="720"
           class="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -29,14 +32,14 @@
       </div>
     </div>
 
-    <p class="label mt-9 text-center text-balance xl:hidden">
-      {PROFILE.title}
+    <p class="label wide:hidden mt-9 text-center text-balance">
+      {resume.profile.title}
     </p>
 
     <section class="mt-10 xl:mt-12">
-      <h2 class="label">Education</h2>
+      <h2 class="label">{COPY[language].education}</h2>
       <div class="border-line mt-4 border-t">
-        {#each EDUCATION_ENTRIES as entry (entry.degree)}
+        {#each resume.education as entry (entry.degree)}
           <div class="border-line border-b py-4">
             <p class="entry-title text-ink text-[1.0625rem]">
               {entry.degree}

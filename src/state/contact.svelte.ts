@@ -8,9 +8,13 @@ import {
   type FormErrors,
 } from '../types/contact';
 import type { ContactPort, ContactRequest } from '../types/ports/contact';
+import { COPY, type ContactCopy } from '../types/language';
 
 /** Owns every contact form mutation and the lifetime of its single request. */
-export function createContactController(port: ContactPort): ContactController {
+export function createContactController(
+  port: ContactPort,
+  copy: ContactCopy = COPY.en.contact
+): ContactController {
   let state = $state(FormState.Idle);
   let data = $state<FormData>({ ...EMPTY_FORM_DATA });
   let errors = $state<FormErrors>({ ...EMPTY_FORM_ERRORS });
@@ -33,12 +37,12 @@ export function createContactController(port: ContactPort): ContactController {
 
   function showFailure(): void {
     state = FormState.SubmissionError;
-    message = 'Failed to send message. Please try again.';
+    message = copy.failure;
   }
 
   function showSuccess(): void {
     state = FormState.Success;
-    message = 'Message sent successfully!';
+    message = copy.success;
     data = { ...EMPTY_FORM_DATA };
     errors = { ...EMPTY_FORM_ERRORS };
   }
@@ -61,7 +65,7 @@ export function createContactController(port: ContactPort): ContactController {
 
   function submit(): void {
     if (destroyed || state === FormState.Submitting) return;
-    const result = validateFormData(data);
+    const result = validateFormData(data, copy.validation);
     errors = result.errors;
     if (!result.isValid) {
       state = FormState.ValidationError;

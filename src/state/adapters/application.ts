@@ -1,3 +1,4 @@
+import { resumeLanguage } from '../../logic/language';
 import { mount } from 'svelte';
 import App from './inbound/App.svelte';
 import { createBrowserThemePort } from './theme';
@@ -10,9 +11,14 @@ import { createBrowserNavigationPort } from './navigation';
 export function startBrowserApplication() {
   const target = document.getElementById('app');
   if (!target) throw new Error('Missing application mount point');
+  const language = resumeLanguage(
+    new URLSearchParams(window.location.search).get('lang')
+  );
+  document.documentElement.lang = language;
   return mount(App, {
     target,
     props: {
+      language,
       themePort: createBrowserThemePort(),
       contactPort: createBrowserContactPort(),
       modalPort: createBrowserModalPort(),

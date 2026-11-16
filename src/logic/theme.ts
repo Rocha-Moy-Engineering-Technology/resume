@@ -1,4 +1,5 @@
 import { SystemScheme, Theme, ThemePreference } from '../types/theme';
+import { COPY, type ResumeLanguage } from '../types/language';
 
 export function parsePreference(raw: string | null): ThemePreference {
   switch (raw) {
@@ -42,8 +43,11 @@ export function nextPreference(
     : ThemePreference.Dark;
 }
 
-export function themeToggleLabel(theme: Theme): string {
+export function themeToggleLabel(
+  theme: Theme,
+  language: ResumeLanguage = 'en'
+): string {
   return theme === Theme.Dark
-    ? 'Switch to light theme'
-    : 'Switch to dark theme';
+    ? COPY[language].lightTheme
+    : COPY[language].darkTheme;
 }

@@ -30,11 +30,17 @@ is this site's own and has no counterpart on the blog.
 - Professional experience timeline with role descriptions and technology tags
 - Portfolio section highlighting key projects
 - Education history
-- Downloadable Portable Document Format (PDF) resume
+- English and Brazilian Portuguese versions with shareable language URLs, translated controls and contact messages, and matching downloadable Portable Document Format (PDF) resumes
 - Contact form powered by [Web3Forms](https://web3forms.com/)
 - Responsive two-column layout (desktop) with single-column mobile fallback
 - Light and dark themes that follow the visitor's system preference, with a
   navbar toggle whose choice is remembered and applied before first paint
+
+## Languages
+
+English is the default and `?lang=en` version; `?lang=pt-BR` selects Brazilian Portuguese. The language links show English/Português from 768 pixels and EN/PT below that, retaining full accessible names and an underlined selected state. They navigate to a new page, opening its default Experience tab. Reload and resume-tab links retain the chosen language. Theme preference stays shared between languages.
+
+The professional title appears beneath the portrait below 1920 pixels and in the navbar from that width, giving the language controls and translated title enough room. Resume content comes from the language registry in `src/types/resume.ts`; Portuguese text is in `src/types/resume-pt.ts`, and all interface copy is in `src/types/language.ts`.
 
 ## Tech Stack
 

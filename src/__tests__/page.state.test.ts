@@ -4,6 +4,13 @@ import { resumeDownloadFilename } from '../logic/page';
 import { ModalState } from '../types/modal';
 
 describe('page state', () => {
+  it('uses the Portuguese download name for the Portuguese page', () => {
+    const page = createPageController(
+      { readDate: () => ({ year: 2026, month: 1, day: 2 }) },
+      'pt-BR'
+    );
+    expect(page.downloadFilename).toBe('PHRMOY_RESUME_PT_rev20260102.pdf');
+  });
   it('captures one injected calendar date and owns the contact modal', () => {
     let reads = 0;
     const page = createPageController({

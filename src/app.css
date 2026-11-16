@@ -46,6 +46,7 @@
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 @theme {
+  --breakpoint-wide: 120rem;
   --color-canvas: var(--canvas);
   --color-canvas-veil: var(--canvas-veil);
   --color-surface: var(--surface);

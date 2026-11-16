@@ -11,8 +11,11 @@
   import type { ModalPort } from '../../../types/ports/modal';
   import type { ClockPort } from '../../../types/ports/clock';
   import type { NavigationPort } from '../../../types/ports/navigation';
+  import { RESUMES } from '../../../types/resume';
+  import type { ResumeLanguage } from '../../../types/language';
 
   interface Props {
+    language?: ResumeLanguage;
     themePort: ThemePort;
     contactPort: ContactPort;
     modalPort: ModalPort;
@@ -20,8 +23,14 @@
     navigationPort: NavigationPort;
   }
 
-  let { themePort, contactPort, modalPort, clockPort, navigationPort }: Props =
-    $props();
+  let {
+    language = 'en',
+    themePort,
+    contactPort,
+    modalPort,
+    clockPort,
+    navigationPort,
+  }: Props = $props();
 
   // The port is injected once at mount and never swapped; capturing it here is
   // deliberate.
@@ -29,22 +38,33 @@
   const themeController = createThemeController(themePort);
 
   // svelte-ignore state_referenced_locally
-  const pageController = createPageController(clockPort);
+  const pageController = createPageController(clockPort, language);
+  const resume = $derived(RESUMES[language]);
 
   onDestroy(() => themeController.destroy());
 </script>
 
+<svelte:head>
+  <title>{resume.profile.name} - {resume.profile.title}</title>
+</svelte:head>
+
 <NavBar
+  {language}
   theme={themeController.theme}
   onthemetoggle={themeController.toggle}
   oncontact={pageController.openContact}
   downloadFilename={pageController.downloadFilename}
 />
 <main class="flex flex-col lg:flex-row">
-  <ProfileColumn />
-  <ExperienceColumn currentYear={pageController.year} port={navigationPort} />
+  <ProfileColumn {language} />
+  <ExperienceColumn
+    {language}
+    currentYear={pageController.year}
+    port={navigationPort}
+  />
 </main>
 <ContactModal
+  {language}
   state={pageController.modalState}
   onclose={pageController.closeContact}
   {contactPort}

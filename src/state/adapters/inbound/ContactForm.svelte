@@ -4,14 +4,17 @@
   import { FormState } from '../../../types/contact';
   import type { FormData, FormErrors } from '../../../types/contact';
   import type { ContactPort } from '../../../types/ports/contact';
+  import { COPY, type ResumeLanguage } from '../../../types/language';
 
   interface Props {
+    language?: ResumeLanguage;
     port: ContactPort;
   }
-  let { port }: Props = $props();
+  let { language = 'en', port }: Props = $props();
+  const copy = $derived(COPY[language]);
   // The dependency is fixed for the lifetime of this mounted form.
   // svelte-ignore state_referenced_locally
-  const controller = createContactController(port);
+  const controller = createContactController(port, COPY[language].contact);
   const formState = $derived(controller.state);
   const formData: FormData = $derived(controller.data);
   const errors: FormErrors = $derived(controller.errors);
@@ -28,7 +31,7 @@
   <div class="border-line bg-canvas border p-6 text-center">
     <p class="text-success display text-lg">{submissionMessage}</p>
     <button type="button" onclick={controller.reset} class="chip mt-6">
-      Send another message
+      {copy.sendAnother}
     </button>
   </div>
 {:else}
@@ -41,7 +44,7 @@
     class="space-y-5"
   >
     <div>
-      <label for="name" class={LABEL_CLASS}>Name</label>
+      <label for="name" class={LABEL_CLASS}>{copy.name}</label>
       <input
         id="name"
         type="text"
@@ -50,7 +53,7 @@
         oninput={(e: Event) =>
           controller.input('name', (e.target as HTMLInputElement).value)}
         class={FIELD_CLASS}
-        placeholder="Your name"
+        placeholder={copy.namePlaceholder}
       />
       {#if errors.name}
         <p class="text-error mt-1.5 text-sm">{errors.name}</p>
@@ -58,7 +61,7 @@
     </div>
 
     <div>
-      <label for="email" class={LABEL_CLASS}>Email</label>
+      <label for="email" class={LABEL_CLASS}>{copy.email}</label>
       <input
         id="email"
         type="email"
@@ -67,7 +70,7 @@
         oninput={(e: Event) =>
           controller.input('email', (e.target as HTMLInputElement).value)}
         class={FIELD_CLASS}
-        placeholder="your@email.com"
+        placeholder={copy.emailPlaceholder}
       />
       {#if errors.email}
         <p class="text-error mt-1.5 text-sm">{errors.email}</p>
@@ -75,7 +78,7 @@
     </div>
 
     <div>
-      <label for="message" class={LABEL_CLASS}>Message</label>
+      <label for="message" class={LABEL_CLASS}>{copy.message}</label>
       <textarea
         id="message"
         disabled={isSubmitting}
@@ -84,7 +87,7 @@
           controller.input('message', (e.target as HTMLTextAreaElement).value)}
         rows={5}
         class="{FIELD_CLASS} resize-none"
-        placeholder="Your message..."
+        placeholder={copy.messagePlaceholder}
       ></textarea>
       {#if errors.message}
         <p class="text-error mt-1.5 text-sm">{errors.message}</p>
@@ -96,7 +99,7 @@
     {/if}
 
     <button type="submit" disabled={isSubmitting} class="action w-full">
-      {isSubmitting ? 'Sending...' : 'Send Message'}
+      {isSubmitting ? copy.sending : copy.send}
     </button>
   </form>
 {/if}

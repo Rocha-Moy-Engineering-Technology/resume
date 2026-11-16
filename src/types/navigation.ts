@@ -8,9 +8,9 @@ export enum ResumeTab {
   Portfolio = 'portfolio',
 }
 
-export const RESUME_TABS: readonly { id: ResumeTab; label: string }[] = [
-  { id: ResumeTab.Experience, label: 'Experience' },
-  { id: ResumeTab.Portfolio, label: 'Portfolio' },
+export const RESUME_TABS: readonly { id: ResumeTab }[] = [
+  { id: ResumeTab.Experience },
+  { id: ResumeTab.Portfolio },
 ];
 
 export interface NavigationController {

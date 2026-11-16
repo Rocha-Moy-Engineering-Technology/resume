@@ -3,15 +3,24 @@
   import ContactForm from './ContactForm.svelte';
   import type { ContactPort } from '../../../types/ports/contact';
   import type { ModalPort } from '../../../types/ports/modal';
+  import { COPY, type ResumeLanguage } from '../../../types/language';
 
   interface Props {
+    language?: ResumeLanguage;
     state: ModalState;
     onclose: () => void;
     contactPort: ContactPort;
     modalPort: ModalPort;
   }
 
-  let { state, onclose, contactPort, modalPort }: Props = $props();
+  let {
+    language = 'en',
+    state,
+    onclose,
+    contactPort,
+    modalPort,
+  }: Props = $props();
+  const copy = $derived(COPY[language]);
 
   function handleBackdropClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
@@ -24,7 +33,7 @@
   <dialog
     use:modalPort.activate
     class="modal-backdrop text-ink fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto border-0 bg-transparent p-0"
-    aria-label="Contact form"
+    aria-label={copy.contactDialog}
     onclick={handleBackdropClick}
     oncancel={(event) => {
       event.preventDefault();
@@ -38,7 +47,7 @@
         type="button"
         onclick={onclose}
         class="icon-link absolute top-4 right-4 p-1.5"
-        aria-label="Close contact form"
+        aria-label={copy.closeContact}
       >
         <svg
           width="18"
@@ -54,10 +63,11 @@
         </svg>
       </button>
 
-      <p class="label">Contact</p>
-      <h2 class="display text-ink mt-3 mb-8 text-[1.75rem]">Get in Touch</h2>
+      <h2 class="display text-ink mt-3 mb-8 pr-5 text-[1.75rem]">
+        {copy.contactHeading}
+      </h2>
 
-      <ContactForm port={contactPort} />
+      <ContactForm {language} port={contactPort} />
     </div>
   </dialog>
 {/if}

@@ -1,3 +1,6 @@
+import { PORTUGUESE_CONTENT } from './resume-pt';
+import type { ResumeLanguage } from './language';
+
 export interface ExperienceEntry {
   readonly title: string;
   readonly company: string;
@@ -347,3 +350,31 @@ export const PROFILE = {
   github: 'https://github.com/phrmoy',
   linkedin: 'https://www.linkedin.com/in/phrmoy/',
 } as const;
+
+export interface ResumeContent {
+  readonly profile: {
+    readonly name: string;
+    readonly title: string;
+    readonly location: string;
+    readonly github: string;
+    readonly linkedin: string;
+  };
+  readonly experience: readonly ExperienceEntry[];
+  readonly education: readonly EducationEntry[];
+  readonly portfolio: readonly PortfolioEntry[];
+}
+
+export const RESUMES: Readonly<Record<ResumeLanguage, ResumeContent>> = {
+  en: {
+    profile: PROFILE,
+    experience: EXPERIENCE_ENTRIES,
+    education: EDUCATION_ENTRIES,
+    portfolio: PORTFOLIO_ENTRIES,
+  },
+  'pt-BR': {
+    profile: { ...PROFILE, title: PORTUGUESE_CONTENT.title },
+    experience: PORTUGUESE_CONTENT.experience,
+    education: PORTUGUESE_CONTENT.education,
+    portfolio: PORTUGUESE_CONTENT.portfolio,
+  },
+};

@@ -1,15 +1,17 @@
 <script lang="ts">
   import { themeToggleLabel } from '../../../logic/theme';
   import { Theme } from '../../../types/theme';
+  import type { ResumeLanguage } from '../../../types/language';
 
   interface Props {
+    language?: ResumeLanguage;
     theme: Theme;
     ontoggle: () => void;
   }
 
-  let { theme, ontoggle }: Props = $props();
+  let { language = 'en', theme, ontoggle }: Props = $props();
 
-  const label = $derived(themeToggleLabel(theme));
+  const label = $derived(themeToggleLabel(theme, language));
 </script>
 
 <button

@@ -1,16 +1,30 @@
 <script lang="ts">
   import ThemeToggle from './ThemeToggle.svelte';
-  import { PROFILE } from '../../../types/resume';
+  import { RESUMES } from '../../../types/resume';
+  import {
+    COPY,
+    LANGUAGE_OPTIONS,
+    type ResumeLanguage,
+  } from '../../../types/language';
   import type { Theme } from '../../../types/theme';
 
   interface Props {
+    language?: ResumeLanguage;
     theme: Theme;
     onthemetoggle: () => void;
     oncontact: () => void;
     downloadFilename: string;
   }
 
-  let { theme, onthemetoggle, oncontact, downloadFilename }: Props = $props();
+  let {
+    language = 'en',
+    theme,
+    onthemetoggle,
+    oncontact,
+    downloadFilename,
+  }: Props = $props();
+  const profile = $derived(RESUMES[language].profile);
+  const copy = $derived(COPY[language]);
 </script>
 
 <nav
@@ -23,19 +37,46 @@
       class="flex w-full min-w-0 items-center pr-4 sm:w-auto sm:flex-1 sm:pr-0 lg:w-2/5 lg:flex-none lg:justify-center"
     >
       <span
-        class="display text-ink min-w-0 text-[0.95rem] sm:text-2xl lg:text-[1.6rem]"
-        >{PROFILE.name}</span
+        class="display text-ink min-w-0 text-[0.95rem] sm:text-2xl lg:text-[1.35rem] xl:text-[1.6rem]"
+        >{profile.name}</span
       >
     </div>
-    <span class="label hidden min-w-0 flex-1 text-right text-balance xl:block">
-      {PROFILE.title}
+    <span
+      class="label wide:block hidden min-w-0 flex-1 text-right leading-tight text-balance"
+    >
+      {profile.title}
     </span>
     <div class="ml-auto flex shrink-0 items-center gap-0 pr-3 sm:gap-1 sm:pr-6">
-      <ThemeToggle {theme} ontoggle={onthemetoggle} />
+      <div
+        role="group"
+        aria-label={copy.language}
+        class="mr-2 flex items-center gap-2"
+      >
+        {#each LANGUAGE_OPTIONS as option (option.id)}
+          <a
+            href="?lang={option.id}"
+            lang={option.id}
+            hreflang={option.id}
+            aria-label={option.label}
+            title={option.label}
+            aria-current={language === option.id ? 'page' : undefined}
+            class={[
+              'text-sm underline-offset-4 focus-visible:outline focus-visible:outline-offset-4',
+              language === option.id
+                ? 'text-ink underline'
+                : 'text-ink-soft hover:text-ink',
+            ]}
+            ><span class="md:hidden">{option.short}</span><span
+              class="hidden md:inline">{option.label}</span
+            ></a
+          >
+        {/each}
+      </div>
+      <ThemeToggle {language} {theme} ontoggle={onthemetoggle} />
       <a
-        href="{import.meta.env.BASE_URL}resume.pdf"
+        href="{import.meta.env.BASE_URL}{copy.pdf}"
         download={downloadFilename}
-        aria-label="Download Resume"
+        aria-label={copy.download}
         class="tooltip icon-link relative p-1.5 sm:p-2"
       >
         <svg
@@ -59,11 +100,11 @@
         <span
           class="tooltip-text label border-line bg-canvas pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 border px-2.5 py-1 whitespace-nowrap opacity-0 transition-opacity duration-150"
         >
-          Download Resume PDF
+          {copy.downloadTooltip}
         </span>
       </a>
       <a
-        href={PROFILE.github}
+        href={profile.github}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub"
@@ -82,7 +123,7 @@
         </svg>
       </a>
       <a
-        href={PROFILE.linkedin}
+        href={profile.linkedin}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
@@ -105,7 +146,7 @@
         onclick={oncontact}
         class="chip ml-2 shrink-0 sm:ml-3"
       >
-        Contact
+        {copy.contactButton}
       </button>
     </div>
   </div>

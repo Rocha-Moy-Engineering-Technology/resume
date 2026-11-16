@@ -3,17 +3,17 @@
   import { createNavigationController } from '../../navigation.svelte';
   import type { NavigationPort } from '../../../types/ports/navigation';
   import { RESUME_TABS, ResumeTab, SectionId } from '../../../types/navigation';
-  import {
-    PROFILE,
-    EXPERIENCE_ENTRIES,
-    PORTFOLIO_ENTRIES,
-  } from '../../../types/resume';
+  import { RESUMES } from '../../../types/resume';
+  import { COPY, type ResumeLanguage } from '../../../types/language';
 
   interface Props {
+    language?: ResumeLanguage;
     currentYear: number;
     port: NavigationPort;
   }
-  let { currentYear, port }: Props = $props();
+  let { language = 'en', currentYear, port }: Props = $props();
+  const resume = $derived(RESUMES[language]);
+  const copy = $derived(COPY[language]);
   // The navigation dependency lasts for this mounted column.
   // svelte-ignore state_referenced_locally
   const controller = createNavigationController(port);
@@ -42,7 +42,7 @@
     >
       <div
         role="tablist"
-        aria-label="Resume sections"
+        aria-label={copy.sections}
         class="border-line flex items-end gap-5 border-b sm:gap-10"
       >
         {#each RESUME_TABS as tab, i (tab.id)}
@@ -62,7 +62,7 @@
               selected ? 'text-ink' : 'text-ink-faint hover:text-ink-soft',
             ]}
           >
-            {tab.label}
+            {copy[tab.id]}
             <span
               aria-hidden="true"
               class={[
@@ -82,7 +82,7 @@
       hidden={activeTab !== ResumeTab.Experience}
       class="[&>article:first-child]:border-t-0"
     >
-      {#each EXPERIENCE_ENTRIES as entry (entry.title)}
+      {#each resume.experience as entry (entry.title)}
         <article class="entry py-8">
           <div
             class="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between md:gap-6"
@@ -118,7 +118,7 @@
       hidden={activeTab !== ResumeTab.Portfolio}
       class="[&>article:first-child]:border-t-0"
     >
-      {#each PORTFOLIO_ENTRIES as entry (entry.title)}
+      {#each resume.portfolio as entry (entry.title)}
         <article class="entry group py-8">
           <a
             href={entry.url}
@@ -152,7 +152,7 @@
 
     <p class="label border-line mt-16 border-t pt-6">
       &copy; {currentYear}
-      {PROFILE.name}
+      {resume.profile.name}
     </p>
   </div>
 </div>

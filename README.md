@@ -1,7 +1,7 @@
 # Contractor Site
 
 - `src/` — Svelte components, pure logic, state controllers, types/ports, browser adapters, styles, assets, and unit tests.
-- `public/` — Verbatim static assets, including the downloadable resume Portable Document Format (PDF) file and favicon.
+- `public/` — Verbatim static assets, including the downloadable English and Portuguese resume Portable Document Format (PDF) files and favicon.
 - `tests/` — Headless browser integration, end-to-end, smoke, and screenshot-gallery tooling.
 - `evidence_gallery/` — The latest verification index, linking to captures in the agent-root temporary folder.
 - `docs/` — Design/reference notes and earlier owner-approved screenshots.
