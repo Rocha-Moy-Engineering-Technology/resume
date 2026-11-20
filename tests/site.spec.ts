@@ -59,10 +59,11 @@ test.describe('Contractor Site', () => {
     }
   });
 
-  // The title is rendered twice -- in the navbar for >=xl and in the profile
-  // column below xl -- with CSS hiding whichever does not apply. Exactly one
-  // copy must be visible at any viewport, so the text is never duplicated on
-  // screen and never disappears entirely.
+  // The title is rendered twice -- in the navbar from the wide breakpoint
+  // (1920 pixels) and in the profile column below it -- with CSS hiding
+  // whichever does not apply. Exactly one copy must be visible at any
+  // viewport, so the text is never duplicated on screen and never disappears
+  // entirely.
   test('professional title is visible exactly once', async ({ page }) => {
     const copies = page.getByText(PROFILE.title);
     await expect(copies).toHaveCount(2);
