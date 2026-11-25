@@ -62,12 +62,15 @@
             title={option.label}
             aria-current={language === option.id ? 'page' : undefined}
             class={[
-              'group block p-0.5 focus-visible:outline focus-visible:outline-offset-2 sm:p-1',
+              'flex items-center gap-1 text-sm underline-offset-4 focus-visible:outline focus-visible:outline-offset-4 sm:gap-1.5',
               language === option.id
                 ? 'text-ink'
                 : 'text-ink-soft hover:text-ink',
             ]}
-            ><FlagIcon flag={option.flag} active={language === option.id} /></a
+            ><FlagIcon flag={option.flag} /><span
+              class={language === option.id ? 'underline' : undefined}
+              >{option.short}</span
+            ></a
           >
         {/each}
       </div>

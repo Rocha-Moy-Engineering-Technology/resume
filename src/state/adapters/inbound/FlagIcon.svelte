@@ -3,10 +3,9 @@
 
   interface Props {
     flag: LanguageFlag;
-    active: boolean;
   }
 
-  let { flag, active }: Props = $props();
+  let { flag }: Props = $props();
 </script>
 
 <svg
@@ -14,12 +13,7 @@
   aria-hidden="true"
   focusable="false"
   data-flag={flag}
-  class={[
-    'block aspect-[3/2] w-[1.125rem] rounded-[2px] transition sm:w-[1.375rem]',
-    active
-      ? 'ring-[1.5px] ring-current'
-      : 'opacity-50 ring-1 ring-current/30 saturate-[.35] group-hover:opacity-100 group-hover:saturate-100 group-focus-visible:opacity-100 group-focus-visible:saturate-100',
-  ]}
+  class="block aspect-[3/2] w-[1.125rem] shrink-0 sm:w-[1.375rem]"
 >
   {#if flag === 'us'}
     <rect width="30" height="20" fill="#fff" />
