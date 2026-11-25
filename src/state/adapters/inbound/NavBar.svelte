@@ -51,7 +51,7 @@
       <div
         role="group"
         aria-label={copy.language}
-        class="mr-2 flex items-center gap-1"
+        class="mr-1 flex items-center gap-1.5 sm:mr-2 md:gap-2"
       >
         {#each LANGUAGE_OPTIONS as option (option.id)}
           <a
@@ -62,7 +62,7 @@
             title={option.label}
             aria-current={language === option.id ? 'page' : undefined}
             class={[
-              'flex items-center gap-1 text-sm underline-offset-4 focus-visible:outline focus-visible:outline-offset-4 sm:gap-1.5',
+              'flex items-center gap-0.5 text-xs underline-offset-4 focus-visible:outline focus-visible:outline-offset-4 md:gap-1.5 md:text-sm',
               language === option.id
                 ? 'text-ink'
                 : 'text-ink-soft hover:text-ink',
@@ -79,7 +79,7 @@
         href="{import.meta.env.BASE_URL}{copy.pdf}"
         download={downloadFilename}
         aria-label={copy.download}
-        class="tooltip icon-link relative p-1.5 sm:p-2"
+        class="tooltip icon-link relative p-1 min-[375px]:p-1.5 md:p-2"
       >
         <svg
           width="19"
@@ -110,7 +110,7 @@
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub"
-        class="icon-link p-1.5 sm:p-2"
+        class="icon-link p-1 min-[375px]:p-1.5 md:p-2"
       >
         <svg
           width="19"
@@ -129,7 +129,7 @@
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        class="icon-link p-1.5 sm:p-2"
+        class="icon-link p-1 min-[375px]:p-1.5 md:p-2"
       >
         <svg
           width="19"

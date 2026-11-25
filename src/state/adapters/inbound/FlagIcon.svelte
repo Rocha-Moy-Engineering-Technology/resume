@@ -13,7 +13,7 @@
   aria-hidden="true"
   focusable="false"
   data-flag={flag}
-  class="block aspect-[3/2] w-[1.125rem] shrink-0 sm:w-[1.375rem]"
+  class="block aspect-[3/2] w-4 shrink-0 md:w-[1.375rem]"
 >
   {#if flag === 'us'}
     <rect width="30" height="20" fill="#fff" />
