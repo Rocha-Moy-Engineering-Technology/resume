@@ -13,10 +13,16 @@ export interface ContactCopy {
   readonly failure: string;
 }
 
+export type LanguageFlag = 'us' | 'br';
+
 export const LANGUAGE_OPTIONS = [
-  { id: 'en', label: 'English', short: 'EN' },
-  { id: 'pt-BR', label: 'Português', short: 'PT' },
-] as const;
+  { id: 'en', label: 'English', flag: 'us' },
+  { id: 'pt-BR', label: 'Português', flag: 'br' },
+] as const satisfies readonly {
+  readonly id: ResumeLanguage;
+  readonly label: string;
+  readonly flag: LanguageFlag;
+}[];
 
 export const COPY = {
   en: {

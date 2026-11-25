@@ -1,6 +1,7 @@
 <script lang="ts">
   import ThemeToggle from './ThemeToggle.svelte';
   import { RESUMES } from '../../../types/resume';
+  import FlagIcon from './FlagIcon.svelte';
   import {
     COPY,
     LANGUAGE_OPTIONS,
@@ -50,7 +51,7 @@
       <div
         role="group"
         aria-label={copy.language}
-        class="mr-2 flex items-center gap-2"
+        class="mr-2 flex items-center gap-1"
       >
         {#each LANGUAGE_OPTIONS as option (option.id)}
           <a
@@ -61,14 +62,12 @@
             title={option.label}
             aria-current={language === option.id ? 'page' : undefined}
             class={[
-              'text-sm underline-offset-4 focus-visible:outline focus-visible:outline-offset-4',
+              'group block p-0.5 focus-visible:outline focus-visible:outline-offset-2 sm:p-1',
               language === option.id
-                ? 'text-ink underline'
+                ? 'text-ink'
                 : 'text-ink-soft hover:text-ink',
             ]}
-            ><span class="md:hidden">{option.short}</span><span
-              class="hidden md:inline">{option.label}</span
-            ></a
+            ><FlagIcon flag={option.flag} active={language === option.id} /></a
           >
         {/each}
       </div>

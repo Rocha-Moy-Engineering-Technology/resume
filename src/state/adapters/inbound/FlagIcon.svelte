@@ -1,0 +1,49 @@
+<script lang="ts">
+  import type { LanguageFlag } from '../../../types/language';
+
+  interface Props {
+    flag: LanguageFlag;
+    active: boolean;
+  }
+
+  let { flag, active }: Props = $props();
+</script>
+
+<svg
+  viewBox="0 0 30 20"
+  aria-hidden="true"
+  focusable="false"
+  data-flag={flag}
+  class={[
+    'block aspect-[3/2] w-[1.125rem] rounded-[2px] transition sm:w-[1.375rem]',
+    active
+      ? 'ring-[1.5px] ring-current'
+      : 'opacity-50 ring-1 ring-current/30 saturate-[.35] group-hover:opacity-100 group-hover:saturate-100 group-focus-visible:opacity-100 group-focus-visible:saturate-100',
+  ]}
+>
+  {#if flag === 'us'}
+    <rect width="30" height="20" fill="#fff" />
+    <path
+      fill="#b22234"
+      d="M0 0h30v1.54H0zm0 3.08h30v1.54H0zm0 3.07h30v1.54H0zm0 3.08h30v1.54H0zm0 3.08h30v1.54H0zm0 3.07h30v1.54H0zm0 3.08h30v1.54H0z"
+    />
+    <rect width="12" height="10.77" fill="#3c3b6e" />
+    <g fill="#fff">
+      {#each [1.6, 4.1, 6.6, 9.1] as cy, row (cy)}
+        {#each row % 2 === 0 ? [1.5, 4.5, 7.5, 10.5] : [3, 6, 9] as cx (cx)}
+          <circle {cx} {cy} r=".55" />
+        {/each}
+      {/each}
+    </g>
+  {:else}
+    <rect width="30" height="20" fill="#009c3b" />
+    <path fill="#ffdf00" d="M15 2.2 27.6 10 15 17.8 2.4 10z" />
+    <circle cx="15" cy="10" r="4.6" fill="#002776" />
+    <path
+      d="M10.5 9.2c3-.6 6.3.1 8.8 2.2"
+      fill="none"
+      stroke="#fff"
+      stroke-width=".9"
+    />
+  {/if}
+</svg>

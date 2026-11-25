@@ -4,6 +4,21 @@ import { COPY } from '../src/types/language';
 import { RESUMES } from '../src/types/resume';
 import { captureEvidence, expect, test } from './fixtures';
 
+test('Choose a language by its flag', async ({ page }) => {
+  await page.goto('/');
+  const english = page.getByRole('link', { name: 'English', exact: true });
+  const portuguese = page.getByRole('link', {
+    name: 'Português',
+    exact: true,
+  });
+  await expect(english.locator('svg[data-flag="us"]')).toBeVisible();
+  await expect(portuguese.locator('svg[data-flag="br"]')).toBeVisible();
+  await expect(english).toHaveText('');
+  await expect(portuguese).toHaveText('');
+  await expect(english.locator('svg')).toHaveClass(/ring-current(?!\/)/);
+  await expect(portuguese.locator('svg')).toHaveClass(/opacity-50/);
+});
+
 test('Switch languages and reopen the shared Portuguese URL', async ({
   page,
 }, testInfo) => {
